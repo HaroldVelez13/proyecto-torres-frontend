@@ -1,0 +1,27 @@
+<article fxLayout="column" fxLayoutAlign="space-evenly end">
+		<button mat-icon-button (click)="cancel()"><mat-icon>clear</mat-icon></button>
+</article>
+<article fxLayout="column" fxLayoutAlign="space-evenly center">
+	<form [formGroup]="epsForm" novalidate>
+		<h3 class="center-text">
+			<span *ngIf="Eps">Editar Eps</span>
+			<span *ngIf="!Eps">Crear Eps</span>
+		</h3>
+		<mat-form-field  class="simple-container">
+			<mat-label>Nombre de la Eps</mat-label>          
+			<input matInput type="text"  formControlName="name" autofocus>
+			<mat-error *ngFor="let validation of validation_messages.name">
+				<mat-error *ngIf="epsForm.get('name').hasError(validation.type) && (epsForm.get('name').dirty || epsForm.get('name').touched)">
+				{{validation.message}} 
+				</mat-error>
+			</mat-error>
+		</mat-form-field>		
+	</form>	    
+    <button mat-stroked-button 
+    		color="primary" 
+    		[disabled]="!epsForm.valid"
+    		(click)="accept()">
+    		<span *ngIf="Eps">Cambiar</span>
+    		<span *ngIf="!Eps">Crear </span>
+    </button>
+</article>

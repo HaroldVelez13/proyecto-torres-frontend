@@ -1,0 +1,34 @@
+.image-card {
+  max-height:  30em;
+}
+
+.card-size {
+  max-width: 300px;
+}
+
+.card-content{
+	display: block;
+    margin-bottom: 16px;
+    margin-left: -10px;
+    margin-right: -10px;
+
+}
+
+.btns-card{
+	margin-top: -3em;
+}
+
+.btns-card a{
+	margin-left: 1em;
+}
+
+.btns-card a mat-icon{
+	color: white;
+}
+
+.secondary{
+	background-color: #6573c3;
+	color: #fff;	
+}
+
+

@@ -1,1 +1,108 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+background:url(
+data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAUElEQVQoU2NkYGAwBuKzQAwDID4IoIgxIikAMZE1oRiArBDdZBSNMIXoJiFbDZYDKcSmCOYimDuNSVKIzRNYrUYOFuQgweoZbIoxgoeoAAcAEckW145YH8EAAAAASUVORK5CYII=
+)repeat;
+}
+
+.mat-drawer-container {
+background:url(
+data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAUElEQVQoU2NkYGAwBuKzQAwDID4IoIgxIikAMZE1oRiArBDdZBSNMIXoJiFbDZYDKcSmCOYimDuNSVKIzRNYrUYOFuQgweoZbIoxgoeoAAcAEckW145YH8EAAAAASUVORK5CYII=
+)repeat;
+}
+.example-sidenav-container {
+  flex: 1;  
+}
+.example-is-mobile .example-sidenav-container {
+  flex: 1 0 auto;
+ }
+mat-sidenav {
+    position: fixed;
+    width: 10rem;
+}
+.example-container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.simple-container{
+  width: 100%;
+  flex: 1 0 auto;  
+}
+.example-spacer {
+  flex: 1 1 auto;
+}
+.example-is-mobile .example-toolbar {
+  position: fixed;
+  z-index: 2;
+}
+.btn-flotante{
+  margin-bottom:2em;
+}
+.user-image {
+  width: 100%;
+  border: 1px solid grey;
+  border-radius: 50%;
+}
+.color-accent{
+  font-size: 2em;
+  color: #00695C;
+}
+.color-warning{
+  font-size: 2em;
+  color: #FF8F00;
+}
+.color-danger{
+  font-size: 2em;
+  color: #C62828;
+}
+.dialog-content{
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+.center-text{
+  text-align: center;
+}
+.left-text{
+  text-align: left;
+}
+.right-text{
+  text-align: right;
+}
+
+.tiny{
+  font-size: 1em;
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.prefix  {
+    font-size: 2em;
+    line-height: 1.125;
+    margin-right: 0.2em;
+}
+
+.little-space{
+  margin-left: 0.5em !important;
+  margin-right: 0.5em !important;
+}
+
+.list-card{
+  margin: 1em;
+
+}
+.list-card:hover{
+  box-shadow: 0 8px 8px 8px rgba(0,0,0,.2), 0 8px 8px 0 rgba(0,0,0,.14), 0 8px 8px 0 rgba(0,0,0,.12) !important;
+    transform: translate3d(0,0,0);
+    transition: background .4s cubic-bezier(.25,.8,.25,1),box-shadow 280ms cubic-bezier(.4,0,.2,1);
+}
+
+small.mat-line{
+  font-size: 0.8em;
+  color: #BDBDBD;
+  margin-bottom: 5px !important;
+}
+

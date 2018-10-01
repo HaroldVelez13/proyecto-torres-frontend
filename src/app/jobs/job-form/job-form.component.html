@@ -1,0 +1,155 @@
+<article fxLayout="row">
+  <section fxFlex="80">
+    <h3>Formulario de <span *ngIf="!jobId">Registro</span>  <span *ngIf="jobId">Edicion</span> de los Trabajos</h3>
+    <p>Los Campos con <mat-icon color="warn" class="tiny">help</mat-icon>Son requeridos</p>
+  </section>
+  <section class="btn-flotante" fxFlex="20" dir="rtl">
+    <a mat-fab color="primary" routerLink="/trabajos" title="Ir a Lista de Empleados">
+      <mat-icon >work</mat-icon>
+    </a>
+  </section>
+</article>
+
+<article>
+	<mat-horizontal-stepper linear  id="stepper">
+		<mat-step  [completed]="stepFormCompleted">			
+			<ng-template matStepLabel >Datos Basicos Del trabajo</ng-template>
+			<section fxLayout="column" fxLayoutAlign="center center">   
+			    <mat-card  class="mat-elevation-z8">    
+			      <mat-card-content  class="card-job">
+			        <form [formGroup]="jobForm" novalidate >        
+			            <mat-form-field class="simple-container">
+			              <mat-label> Nombre del Empleador/Empresa</mat-label>
+			              <input matInput type="text" placeholder=" Nombre del Empleador/Empresa" formControlName="business_person" autofocus>
+			              <mat-icon matPrefix class="prefix">account_box</mat-icon>
+			              <mat-icon matSuffix
+			                        color="warn" 
+			                        matTooltip="EL Empleador/Empresa debe contar con al menos 5 letras" 
+			                        matTooltipPosition="below"
+			                        class="tiny">help
+			              </mat-icon>
+			              <mat-error *ngFor="let validation of validation_messages.business_person">
+			                <mat-error *ngIf="jobForm.get('business_person').hasError(validation.type) && (jobForm.get('business_person').dirty || jobForm.get('business_person').touched)">
+			                  {{validation.message}}
+			                </mat-error>
+			              </mat-error>
+			            </mat-form-field>
+
+			            <mat-form-field class="simple-container">
+			              <mat-label> Telefono Principal</mat-label>
+			              <input matInput type="text" placeholder=" Telefono Principal" formControlName="principal_phone">
+			              <mat-icon matPrefix class="prefix">ring_volume</mat-icon>
+			              <mat-icon matSuffix
+			                        color="primary" 
+			                        matTooltip="EL Telefono debe contar con al menos 7 numeros" 
+			                        matTooltipPosition="below"
+			                        class="tiny">help
+			              </mat-icon>
+			              <mat-error *ngFor="let validation of validation_messages.principal_phone">
+			                <mat-error *ngIf="jobForm.get('principal_phone').hasError(validation.type) && (jobForm.get('principal_phone').dirty || jobForm.get('principal_phone').touched)">
+			                  {{validation.message}}
+			                </mat-error>
+			              </mat-error>
+			            </mat-form-field>
+
+			            <mat-form-field class="simple-container">
+			              <mat-label> Telefono opcional</mat-label>
+			              <input matInput type="text" placeholder=" Telefono opcional" formControlName="optional_phone">
+			              <mat-icon matPrefix class="prefix">call_end</mat-icon>
+			              <mat-icon matSuffix
+			                        color="primary" 
+			                        matTooltip="EL Telefono debe contar con al menos 7 numeros" 
+			                        matTooltipPosition="below"
+			                        class="tiny">help
+			              </mat-icon>
+			              <mat-error *ngFor="let validation of validation_messages.optional_phone">
+			                <mat-error *ngIf="jobForm.get('optional_phone').hasError(validation.type) && (jobForm.get('optional_phone').dirty || jobForm.get('optional_phone').touched)">
+			                  {{validation.message}}
+			                </mat-error>
+			              </mat-error>
+			            </mat-form-field>
+
+			            <mat-form-field class="simple-container">
+			              <mat-label> Ciudad/Lugar</mat-label>
+			              <input matInput type="text" placeholder=" Cali-Valle, Centro" formControlName="city">
+			              <mat-icon matPrefix class="prefix">location_city</mat-icon>
+			              <mat-icon matSuffix
+			                        color="primary" 
+			                        matTooltip="La ciudad debe contar con al menos 5 Letras" 
+			                        matTooltipPosition="below"
+			                        class="tiny">help
+			              </mat-icon>
+			              <mat-error *ngFor="let validation of validation_messages.city">
+			                <mat-error *ngIf="jobForm.get('city').hasError(validation.type) && (jobForm.get('city').dirty || jobForm.get('city').touched)">
+			                  {{validation.message}}
+			                </mat-error>
+			              </mat-error>
+			            </mat-form-field>
+
+			            <mat-form-field class="simple-container">
+			              <input matInput [matDatepicker]="init_date" placeholder=" Fecha de Inicio del Contrato " formControlName="init_date">
+			              <mat-datepicker-toggle matSuffix [for]="init_date"></mat-datepicker-toggle>
+			              <mat-datepicker #init_date></mat-datepicker>
+			              <mat-icon matSuffix
+			                        color="primary" 
+			                        matTooltip="Por defecto la fecha es la de Hoy" 
+			                        matTooltipPosition="below"
+			                        class="tiny">help
+			              </mat-icon>
+			            </mat-form-field>
+
+			            <mat-form-field class="simple-container">
+			              <input matInput [matDatepicker]="finish_date" placeholder=" Fecha de Finalizacion del Contrato " formControlName="finish_date">
+			              <mat-datepicker-toggle matSuffix [for]="finish_date"></mat-datepicker-toggle>
+			              <mat-datepicker #finish_date></mat-datepicker>
+			              <mat-icon matSuffix
+			                        color="primary" 
+			                        matTooltip="Fecha de Finilizacion del contrato" 
+			                        matTooltipPosition="below"
+			                        class="tiny">help
+			              </mat-icon>
+			            </mat-form-field>
+			                                
+			        </form>  
+			      </mat-card-content>
+			      <mat-card-actions  fxLayout="row" fxLayoutAlign="space-between center" >
+			        <button mat-stroked-button color="primary" 			        		
+			                [disabled]="!jobForm.valid || loading" 
+			                (click)="formAction(jobForm.value)">
+			                <span *ngIf="!slideId">Registro</span>  <span *ngIf="slideId">Editar</span>              
+			        </button>			         
+			      </mat-card-actions> 
+			       <p [hidden]="!loading">
+			          <mat-progress-bar mode="indeterminate"> </mat-progress-bar> 
+			      </p>           
+			    </mat-card> 
+			</section>
+					
+		</mat-step>
+		<mat-step >
+			<ng-template matStepLabel>Asignar Empleados</ng-template>
+
+			<section fxLayout="column" fxLayoutAlign="center center">   
+			    <mat-card  class="mat-elevation-z8">    
+			      <mat-card-content  class="card-job">
+			        <mat-selection-list #users_list [(ngModel)]="selectedOptions" (ngModelChange)="onSelection($event)">
+						<mat-list-option *ngFor="let user of users" [value]="user.id" >
+							<mat-icon mat-list-icon>perm_contact_calendar</mat-icon>
+						    <h4 mat-line>{{user.name | titlecase}}</h4>
+						    <p mat-line> {{user.last_name | titlecase}}</p>						 
+						</mat-list-option>
+					</mat-selection-list>
+			      </mat-card-content>
+			      <mat-card-actions  fxLayout="row" fxLayoutAlign="space-between center" >
+			        	<button mat-stroked-button color="primary" class="little-space" matStepperPrevious>Volver</button>
+						<button mat-stroked-button color="primary" class="little-space" (click)="addUsers()">Asignar</button>
+					</mat-card-actions> 
+			       <p [hidden]="!loading">
+			          <mat-progress-bar mode="indeterminate"> </mat-progress-bar> 
+			      </p>           
+			    </mat-card> 
+			</section>
+
+		</mat-step>
+	</mat-horizontal-stepper>
+</article>

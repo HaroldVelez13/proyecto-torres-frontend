@@ -1,0 +1,37 @@
+
+<article class="button-row" fxLayout="row" fxLayoutAlign="end stretch">
+  <a mat-fab color="primary" routerLink="/empleados/crear">
+  	<mat-icon>person_add</mat-icon>
+  </a>
+</article>
+
+<article fxLayout="row wrap" fxLayout.xs="column wrap" > 
+	<section fxFlex.gt-xs="50%" [fxFlex.gt-md]="regularDistribution"  *ngFor="let user of users">
+		<mat-card class="mat-elevation-z8 list-card" fxLayout="column" fxLayoutAlign="start center">
+			<img class="card-image" [src]="api_img+user.img_url" >
+			<mat-card-header >
+    			<mat-card-title class="card-title">{{user.name| titlecase}}</mat-card-title>
+    			<mat-card-subtitle> {{user.last_name| titlecase}}<small> ( {{user.rol| titlecase}} )</small></mat-card-subtitle>			    
+		  	</mat-card-header>		  	  
+		  	<mat-card-content fxLayout="row" fxLayoutAlign="space-between center" >
+		    	<button mat-icon-button class="color-warning little-space" 
+		    						routerLink="/empleados/editar/{{user.id}}"
+		    						title="Editar a {{user.name}}">
+		    		<mat-icon>edit</mat-icon>
+		    	</button>	
+		    	<button mat-icon-button class="color-accent little-space" 
+		    						routerLink="/empleados/detalle/{{user.id}}"
+		    						title="Ver mas de {{user.name}}">
+		    		<mat-icon>add</mat-icon>
+		    	</button>
+		    	<button mat-icon-button class="color-danger little-space" 
+		    						(click)="deleteUser(user, $index)"
+		    						title="Eliminar a {{user.name}}">
+		    		<mat-icon>delete_forever</mat-icon>
+		    	</button>	
+		    	    
+		  	</mat-card-content>
+		</mat-card>	
+	</section>	
+</article>
+

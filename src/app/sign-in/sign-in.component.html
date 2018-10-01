@@ -1,0 +1,49 @@
+<article fxLayout="column" fxLayoutAlign="center center">
+    <mat-card class="carta-login" >
+      <mat-card-header>
+        <mat-card-title> 
+          <h3>Formulario de Ingreso</h3>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form [formGroup]="loginForm" (ngSubmit)="login()" >
+          <p>
+            <mat-form-field class="simple-container">
+              <mat-label>Correo</mat-label>
+              <input matInput type="email" placeholder="usuario@email.com" formControlName="email" autofocus>
+              <mat-icon matSuffix>account_circle</mat-icon>
+              <mat-error *ngFor="let validation of login_validation_messages.email">
+                <mat-error *ngIf="loginForm.get('email').hasError(validation.type) && (loginForm.get('email').dirty || loginForm.get('email').touched)">
+                  {{validation.message}}
+                </mat-error>
+              </mat-error>
+            </mat-form-field>
+          </p>
+          <p >
+            <mat-form-field  class="simple-container">
+              <mat-label>Contraseña</mat-label>          
+              <input matInput type="password"  formControlName="password">
+              <mat-icon matSuffix>vpn_key</mat-icon>    
+              <mat-error *ngFor="let validation of login_validation_messages.password">
+                <mat-error *ngIf="loginForm.get('password').hasError(validation.type) && (loginForm.get('password').dirty || loginForm.get('password').touched)">
+                  {{validation.message}} 
+                </mat-error>
+              </mat-error>
+            </mat-form-field>
+          </p>
+          <div fxLayout="row" fxLayoutAlign="end end">
+            <button mat-stroked-button color="primary" [disabled]="!loginForm.valid || loading" type="submit">
+              Ingresar
+            </button>          
+          </div>
+       
+        </form>  
+      </mat-card-content>
+      <p [hidden]="!loading">
+        <mat-progress-bar mode="indeterminate"> </mat-progress-bar> 
+      </p>
+    </mat-card>
+</article>
+
+
+   

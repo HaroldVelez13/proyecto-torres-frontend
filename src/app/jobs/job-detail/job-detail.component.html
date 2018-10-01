@@ -1,0 +1,69 @@
+<article class="button-row" fxLayout="row" fxLayoutAlign="end stretch">
+  	<a mat-fab color="primary" routerLink="/trabajos" title="Ir a Lista de Empleados">
+    	<mat-icon >work</mat-icon>
+   	</a>
+</article>
+
+<article *ngIf="job">
+	<section fxLayout="column" fxLayoutAlign="center center">   
+	    <mat-card  class="mat-elevation-z8" class="detail-job">
+	    	<mat-card-header fxLayout="row" fxLayoutAlign="end stretch">		    	
+				<mat-list fxFlex="50%" fxFlex.gt-md="100%" >
+				  	<mat-list-item>					    	
+				    	<h4 mat-line>{{job.business_person| titlecase}}</h4>
+						<small mat-line> Persona/Empresa</small>
+
+						<h4 mat-line *ngIf="job.principal_phone; else principal">{{job.principal_phone| titlecase }}</h4>
+						<ng-template #principal>
+							<h4 mat-line>---</h4>
+						</ng-template>	
+						<small mat-line> Telefono Principal</small>
+
+						<h4 mat-line *ngIf="job.optional_phone; else optional">{{job.optional_phone| titlecase }}</h4>
+						<ng-template #optional>
+							<h4 mat-line>---</h4>
+						</ng-template>						
+						<small mat-line> Telefono Secundario</small>	
+				 	</mat-list-item>				 	
+				</mat-list> 
+
+	    		<mat-list fxFlex="50%" fxFlex.gt-md="100%">
+				  	<mat-list-item>					    	
+				    	<h4 mat-line *ngIf="job.city; else city">{{job.city| titlecase }}</h4>
+				    	<ng-template #city>
+							<h4 mat-line>---</h4>
+						</ng-template>
+						<small mat-line> Ciudad</small>
+
+						<h4 mat-line *ngIf="job.init_date; else init_date">{{job.init_date }}</h4>						
+						<ng-template #init_date>
+							<h4 mat-line>---</h4>
+						</ng-template>
+						<small mat-line> Fecha de inicio</small>
+
+						<h4 mat-line *ngIf="job.finish_date; else finish_date">{{job.finish_date }}</h4>
+						<ng-template #finish_date>
+							<h4 mat-line>---</h4>
+						</ng-template>
+						<small mat-line> Fecha de Finalizacion</small>	
+				 	</mat-list-item>				 	
+				</mat-list>		    	
+		  	</mat-card-header>    
+	      	<mat-card-content fxLayout="row" fxLayoutAlign="start center">
+				<mat-list *ngIf="users.length; else other">
+				 	<h3 mat-subheader>Empleados Vinculados</h3>
+				  	<mat-list-item *ngFor="let user of users">
+				    	<mat-icon mat-list-icon>perm_contact_calendar</mat-icon>
+				    	<h4 mat-line>{{user.name | titlecase}}</h4>
+						<p mat-line> {{user.last_name | titlecase}}</p>	
+				 	</mat-list-item>
+				</mat-list>	
+				<ng-template #other>
+					<mat-list >
+					 	<h3 mat-subheader>Sin Empleados Vinculados</h3>				  	
+					</mat-list>	
+				</ng-template>
+	      	</mat-card-content>	         
+	    </mat-card> 
+	</section>							
+</article>

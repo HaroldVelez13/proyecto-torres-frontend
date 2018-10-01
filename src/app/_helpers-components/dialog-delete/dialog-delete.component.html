@@ -1,0 +1,12 @@
+<article fxLayout="column" fxLayoutAlign="center center">
+	<section fxFlex="20" dir="rtl">
+		<button mat-icon-button (click)="cancel()"><mat-icon>clear</mat-icon></button>
+	</section>
+	<section class="dialog-content center-text" >
+		<p>¿ Seguro que quiere Eliminar</p>
+		<p>{{type}} <strong>{{name}} </strong>?</p>
+	</section>
+	<section class="center-text">	    
+	    <button mat-stroked-button color="warn"(click)="accept()">Aceptar</button>
+	</section>
+</article>

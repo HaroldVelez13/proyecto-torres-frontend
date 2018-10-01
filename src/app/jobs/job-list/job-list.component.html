@@ -1,0 +1,38 @@
+<article class="button-row" fxLayout="row" fxLayoutAlign="end stretch">
+  <a mat-fab color="primary" routerLink="/trabajos/crear">
+  	<mat-icon>add_circle_outline</mat-icon>
+  </a>
+</article>
+
+<article fxLayout="row wrap" fxLayout.xs="column wrap">
+	<section fxFlex.gt-xs="50%" [fxFlex.gt-md]="regularDistribution"  *ngFor="let job of jobs">
+		<mat-card class="mat-elevation-z8 list-card">
+			<mat-card-header fxLayout="column" fxLayoutAlign="start stretch">
+				<mat-list>
+					<mat-list-item>					    	
+					    	<h6 mat-line>{{job.business_person| titlecase}}</h6>
+							<small mat-line> Persona/Empresa</small>
+							<h6 mat-line>{{job.city| titlecase}}</h6>
+							<small mat-line> Ciudad</small>							    	
+				    </mat-list-item>				 	
+				</mat-list> 
+			</mat-card-header>
+		  	<mat-card-content fxLayout="row" fxLayoutAlign="space-between center" >
+		    	<button mat-icon-button class="color-warning little-space" 
+		    						routerLink="/trabajos/editar/{{job.id}}">
+		    		<mat-icon>edit</mat-icon>
+		    	</button>
+		    	<button mat-icon-button class="color-accent little-space" 
+		    						routerLink="/trabajos/detalle/{{job.id}}"
+		    						title="Ver mas de {{job.business_person}}">
+		    		<mat-icon>add</mat-icon>
+		    	</button>	
+		    	<button mat-icon-button class="color-danger little-space" 
+		    						(click)="deleteJob(job, $index)">
+		    		<mat-icon>delete_forever</mat-icon>
+		    	</button>	
+		    	    
+		  	</mat-card-content>
+		</mat-card>
+	</section>
+</article>

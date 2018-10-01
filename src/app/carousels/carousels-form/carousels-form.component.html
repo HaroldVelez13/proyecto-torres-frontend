@@ -1,0 +1,91 @@
+<article fxLayout="row">
+  <section fxFlex="80">
+    <h3>Formulario de <span *ngIf="!slideId">Registro</span>  <span *ngIf="slideId">Edicion</span> de Evidencias</h3>
+    <p>Los Campos con <mat-icon color="warn" class="tiny">help</mat-icon>Son requeridos</p>
+  </section>
+  <section class="btn-flotante" fxFlex="20" dir="rtl">
+    <a mat-fab color="primary" routerLink="/evidencias" title="Ir a Lista de Empleados">
+      <mat-icon >image</mat-icon>
+    </a>
+  </section>
+</article>
+
+<article>
+  <section fxLayout="column" fxLayoutAlign="center center">   
+    <mat-card  class="mat-elevation-z8">    
+      <mat-card-content  class="card-size">
+        <form [formGroup]="slideForm" novalidate >
+
+            <p class="simple-container" fxLayout="column" fxLayoutAlign="start center">  
+              <img mat-card-image [src]="init_image" />     
+              <button mat-raised-button (click)="openInput()">
+                Imagen de la Evidencia
+                <mat-icon matSuffix
+                        color="warn" 
+                        matTooltip="La Imagen es requerida" 
+                        matTooltipPosition="below"
+                        class="tiny">help
+                </mat-icon>
+              </button>              
+              <input [hidden]="true" type="file" (change)="fileChange($event)" accept="image/*" multiple id="evidencia">
+            </p>
+
+            <mat-form-field class="simple-container">
+              <mat-label>Nombre</mat-label>
+              <input matInput type="text" placeholder=" Nombre" formControlName="name" autofocus>
+              <mat-icon matPrefix class="prefix">description</mat-icon>
+              <mat-icon matSuffix
+                        color="primary" 
+                        matTooltip="EL Nombre debe contar con al menos 5 letras" 
+                        matTooltipPosition="below"
+                        class="tiny">help
+              </mat-icon>
+              <mat-error *ngFor="let validation of validation_messages.name">
+                <mat-error *ngIf="slideForm.get('name').hasError(validation.type) && (slideForm.get('name').dirty || slideForm.get('name').touched)">
+                  {{validation.message}}
+                </mat-error>
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="simple-container">
+              <mat-label>Descripcion</mat-label>
+              <textarea matInput placeholder=" Descripcion" formControlName="description"></textarea>             
+              <mat-icon matPrefix class="prefix">textsms</mat-icon>
+              <mat-icon matSuffix
+                        color="primary" 
+                        matTooltip="La descripcion debe contar con al menos 10 letras" 
+                        matTooltipPosition="below"
+                        class="tiny">help
+              </mat-icon>
+              <mat-error *ngFor="let validation of validation_messages.description">
+                <mat-error *ngIf="slideForm.get('description').hasError(validation.type) && (slideForm.get('description').dirty || slideForm.get('description').touched)">
+                  {{validation.message}}
+                </mat-error>
+              </mat-error>
+            </mat-form-field>  
+
+
+		    <section class="simple-container right-text">
+		      <mat-slide-toggle color="primary"
+                            [checked]="checked" 
+		      					        (change)="toggleChange($event)">
+		        Estado
+		      </mat-slide-toggle>
+		    </section>
+                    
+            
+        </form>  
+      </mat-card-content>
+      <mat-card-actions  class="center-text" >
+        <button mat-stroked-button color="primary" 
+                [disabled]="!slideForm.valid || loading" 
+                (click)="formAction(slideForm.value)">
+                <span *ngIf="!slideId">Registro</span>  <span *ngIf="slideId">Editar</span>                
+        </button> 
+      </mat-card-actions> 
+       <p [hidden]="!loading">
+          <mat-progress-bar mode="indeterminate"> </mat-progress-bar> 
+      </p>           
+    </mat-card> 
+    </section>
+</article>

@@ -1,0 +1,15 @@
+.card-image{
+	height: 8em;
+    width: 8em;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+.card-title{
+	font-size: 1.2em;
+	
+}
+
+

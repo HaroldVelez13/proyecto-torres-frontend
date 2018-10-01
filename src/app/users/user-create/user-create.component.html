@@ -1,0 +1,307 @@
+<article fxLayout="row">
+  <section fxFlex="80">
+    <h3>Formulario de Registro de Empleados</h3>
+    <p>Los Campos con <mat-icon color="warn" class="tiny">help</mat-icon>Son requeridos</p>
+  </section>
+  <section class="btn-flotante" fxFlex="20" dir="rtl">
+    <a mat-fab color="primary" routerLink="/empleados" title="Ir a Lista de Empleados">
+      <mat-icon >group</mat-icon>
+    </a>
+  </section>
+</article>
+
+<article>
+  
+    <mat-card  class="mat-elevation-z8">    
+      <mat-card-content fxLayout="row" fxLayout.sm="column" fxLayoutAlign="space-around center">
+        <form [formGroup]="createUserForm" novalidate class="simple-container">
+          <section fxFlex="14"> 
+            <p class="simple-container" fxLayout="column" fxLayoutAlign="start center">  
+              <img class="user-image" [src]="init_image" />     
+              <button mat-raised-button (click)="openInput()">
+                Imagen de Perfil
+              </button>              
+              <input [hidden]="true" type="file" (change)="fileChange($event)" accept="image/*" multiple id="avatar">
+            </p>
+          </section>
+
+          <section fxFlex="30" fxFlexOffset="2">
+
+            <mat-form-field class="simple-container">
+              <mat-label>Nombre(s)</mat-label>
+              <input matInput type="text" placeholder=" Nombre Completo" formControlName="name" autofocus>
+              <mat-icon matPrefix class="prefix">account_circle</mat-icon>
+              <mat-icon matSuffix
+                        color="warn" 
+                        matTooltip="EL Nombre es Requerido" 
+                        matTooltipPosition="below"
+                        class="tiny">help
+              </mat-icon>
+              <mat-error *ngFor="let validation of create_validation_messages.name">
+                <mat-error *ngIf="createUserForm.get('name').hasError(validation.type) && (createUserForm.get('name').dirty || createUserForm.get('name').touched)">
+                  {{validation.message}}
+                </mat-error>
+              </mat-error>
+            </mat-form-field>
+            
+            <mat-form-field class="simple-container">
+              <mat-label>Apellido(s)</mat-label>
+              <input matInput type="text" placeholder=" Apellido Completo" formControlName="last_name" >
+              <mat-icon  matPrefix class="prefix">account_box</mat-icon>
+              <mat-icon matSuffix
+                        color="primary" 
+                        matTooltip="El apellido debe contener solo letras" 
+                        matTooltipPosition="below"
+                        class="tiny">help
+              </mat-icon>
+              <mat-error *ngFor="let validation of create_validation_messages.last_name">
+                <mat-error *ngIf="createUserForm.get('last_name').hasError(validation.type) && (createUserForm.get('last_name').dirty || createUserForm.get('last_name').touched)">
+                  {{validation.message}}
+                </mat-error>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="simple-container">
+              <mat-label>Correo Electronico</mat-label>
+              <input matInput type="email" placeholder=" usuario@email.com" formControlName="email" >
+              <mat-icon  matPrefix class="prefix">email</mat-icon>
+              <mat-icon matSuffix
+                        color="warn" 
+                        matTooltip="El Correo es Requerido" 
+                        matTooltipPosition="below"
+                        class="tiny">help
+              </mat-icon>
+              <mat-error *ngFor="let validation of create_validation_messages.email">
+                <mat-error *ngIf="createUserForm.get('email').hasError(validation.type) && (createUserForm.get('email').dirty || createUserForm.get('email').touched)">
+                  {{validation.message}}
+                </mat-error>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="simple-container">
+              <mat-label>Numero de Cedula</mat-label>
+              <input matInput type="number" placeholder=" Numero de cedula" formControlName="cc" >
+              <mat-icon  matPrefix class="prefix">closed_caption</mat-icon>
+              <mat-icon matSuffix
+                        color="warn" 
+                        matTooltip="El Numero de Cedula es Requerida y solo debe contener un maximo de 10 numeros" 
+                        matTooltipPosition="below"
+                        class="tiny">help
+              </mat-icon>
+              <mat-error *ngFor="let validation of create_validation_messages.cc">
+                <mat-error *ngIf="createUserForm.get('cc').hasError(validation.type) && (createUserForm.get('cc').dirty || createUserForm.get('cc').touched)">
+                  {{validation.message}}
+                </mat-error>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="simple-container">
+              <input matInput [matDatepicker]="picker" placeholder=" Fecha de nacimiento " formControlName="birthday">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+              <mat-icon matSuffix
+                        color="warn" 
+                        matTooltip="La fecha de Nacimiento es Requerida" 
+                        matTooltipPosition="below"
+                        class="tiny">help
+              </mat-icon>
+              <mat-error *ngFor="let validation of create_validation_messages.birthday">
+                <mat-error *ngIf="createUserForm.get('birthday').hasError(validation.type) && (createUserForm.get('birthday').dirty || createUserForm.get('birthday').touched)">
+                  {{validation.message}}
+                </mat-error>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="simple-container">
+              <mat-select placeholder=" Genero" formControlName="gender">
+                <mat-option *ngFor="let gender of genders" [value]="gender.value">
+                  {{gender.viewValue}}
+                </mat-option>
+              </mat-select>
+              <mat-icon matSuffix
+                        color="warn" 
+                        matTooltip="El genero es Requerido" 
+                        matTooltipPosition="below"
+                        class="tiny">help
+              </mat-icon>
+            </mat-form-field>
+        </section>
+
+        <section fxFlex="30" fxFlexOffset="2">
+            <mat-form-field class="simple-container">
+              <mat-label>Direccion de recidencia</mat-label>
+              <input matInput placeholder=" Direccion" formControlName="address" >
+              <mat-icon matPrefix class="prefix">room</mat-icon>
+              <mat-icon matSuffix
+                        color="primary" 
+                        matTooltip="La direccion puede ser el Barrio, Ciudad o Ambos" 
+                        matTooltipPosition="below"
+                        class="tiny">help
+              </mat-icon>
+              <mat-error *ngFor="let validation of create_validation_messages.address">
+                <mat-error *ngIf="createUserForm.get('address').hasError(validation.type) && (createUserForm.get('address').dirty || createUserForm.get('address').touched)">
+                  {{validation.message}}
+                </mat-error>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="simple-container">
+              <mat-label>Telefono Fijo</mat-label>
+              <input matInput type="tel" placeholder=" Telefono Fijo" formControlName="phone" >
+              <mat-icon  matPrefix class="prefix">phone</mat-icon>
+              <mat-icon matSuffix
+                        color="primary" 
+                        matTooltip="El telefono fijo puede contener indicativo de ser necesario" 
+                        matTooltipPosition="below"
+                        class="tiny">help
+              </mat-icon>
+              <mat-error *ngFor="let validation of create_validation_messages.phone">
+                <mat-error *ngIf="createUserForm.get('phone').hasError(validation.type) && (createUserForm.get('phone').dirty || createUserForm.get('phone').touched)">
+                  {{validation.message}}
+                </mat-error>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="simple-container">
+              <mat-label>Telefono Celular</mat-label>
+              <input matInput type="tel" placeholder=" Telefono Celular" formControlName="cell" >
+              <mat-icon  matPrefix class="prefix">stay_current_portrait</mat-icon>
+              <mat-icon matSuffix
+                        color="primary" 
+                        matTooltip="El telefono celular puede contener indicativo de ser necesario" 
+                        matTooltipPosition="below"
+                        class="tiny">help
+              </mat-icon>
+              <mat-error *ngFor="let validation of create_validation_messages.cell">
+                <mat-error *ngIf="createUserForm.get('cell').hasError(validation.type) && (createUserForm.get('cell').dirty || createUserForm.get('cell').touched)">
+                  {{validation.message}}
+                </mat-error>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="simple-container">
+              <mat-select placeholder=" Talla Camisa " formControlName="uniform_size">
+                <mat-option *ngFor="let uniform of uniforms" [value]="uniform.value">
+                  {{uniform.viewValue}}
+                </mat-option>
+        			</mat-select>
+              <mat-icon matSuffix
+                        color="warn" 
+                        matTooltip="La talla de Camisa es Requerida" 
+                        matTooltipPosition="below"
+                        class="tiny">help
+              </mat-icon>
+            </mat-form-field>
+            <mat-form-field class="simple-container">
+              <mat-label>Talla del Calzado</mat-label>
+              <input matInput type="number" min="30" max="50" placeholder=" 30" formControlName="shoe_size" >
+              <mat-icon  matPrefix class="prefix">directions_run</mat-icon>
+              <mat-icon matSuffix
+                        color="warn" 
+                        matTooltip="La talla del Calzado es Requerida, y debe ser un numero ente 30 - 50" 
+                        matTooltipPosition="below"
+                        class="tiny">help
+              </mat-icon>
+              <mat-error *ngFor="let validation of create_validation_messages.shoe_size">
+                <mat-error *ngIf="createUserForm.get('shoe_size').hasError(validation.type) && (createUserForm.get('shoe_size').dirty || createUserForm.get('shoe_size').touched)">
+                  {{validation.message}}
+                </mat-error>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field  class="simple-container">
+              <mat-label>Contraseña</mat-label>          
+              <input matInput type="password"  formControlName="password">
+              <mat-icon  matPrefix class="prefix">vpn_key</mat-icon>
+              <mat-icon matSuffix
+                        color="primary" 
+                        matTooltip="De no ser incluida, la Contraseña por defecto sera El numero de Cedula" 
+                        matTooltipPosition="below"
+                        class="tiny">help
+              </mat-icon>    
+              <mat-error *ngFor="let validation of create_validation_messages.password">
+                <mat-error *ngIf="createUserForm.get('password').hasError(validation.type) && (createUserForm.get('password').dirty || createUserForm.get('password').touched)">
+                  {{validation.message}} 
+                </mat-error>
+              </mat-error>
+            </mat-form-field>
+        </section>
+
+        <section fxFlex="20" fxFlexOffset="2">
+            <mat-form-field class="simple-container">
+              <mat-select placeholder=" Nombre Eps" formControlName="ep_id">
+                <mat-option *ngFor="let ep of eps" [value]="ep.id">
+                  {{ep.name}}
+                </mat-option>
+              </mat-select>
+              <mat-icon matSuffix
+                        color="primary" 
+                        matTooltip="Campo necesario si el empleado esta Afiliado" 
+                        matTooltipPosition="below"
+                        class="tiny">help
+              </mat-icon>
+            </mat-form-field>
+            <mat-form-field class="simple-container">
+              <mat-select placeholder=" Nombre de Pensiones" formControlName="pension_id">
+                <mat-option *ngFor="let pension of pensions" [value]="pension.id">
+                  {{pension.name}}
+                </mat-option>
+              </mat-select>
+              <mat-icon matSuffix
+                        color="primary" 
+                        matTooltip="Campo necesario si el empleado esta Afiliado" 
+                        matTooltipPosition="below"
+                        class="tiny">help
+              </mat-icon>
+            </mat-form-field>
+            <mat-form-field class="simple-container">
+              <mat-select placeholder=" Cargo " formControlName="rol">
+                <mat-option *ngFor="let rol of roles" [value]="rol.value">
+                  {{rol.viewValue}}
+                </mat-option>
+              </mat-select>
+              <mat-icon matSuffix
+                        color="warn" 
+                        matTooltip="El cargo es Requerido" 
+                        matTooltipPosition="below"
+                        class="tiny">help
+              </mat-icon>
+            </mat-form-field>
+            <mat-form-field class="simple-container">
+              <input matInput [matDatepicker]="init_date" placeholder=" Fecha de Contratacion " formControlName="init_at">
+              <mat-datepicker-toggle matSuffix [for]="init_date"></mat-datepicker-toggle>
+              <mat-datepicker #init_date></mat-datepicker>
+              <mat-icon matSuffix
+                        color="primary" 
+                        matTooltip="Por defecto la fecha es la de hoy" 
+                        matTooltipPosition="below"
+                        class="tiny">help
+              </mat-icon>
+              <mat-error *ngFor="let validation of create_validation_messages.init_at">
+                <mat-error *ngIf="createUserForm.get('init_at').hasError(validation.type) && (createUserForm.get('init_at').dirty || createUserForm.get('init_at').touched)">
+                  {{validation.message}}
+                </mat-error>
+              </mat-error>
+            </mat-form-field>
+        </section>            
+        </form>  
+      </mat-card-content>
+      <mat-card-actions fxLayout="row" fxLayoutAlign="space-between  center"  >
+        <button mat-stroked-button color="primary" dir="ltr"
+                [disabled]="!createUserForm.valid || loading" 
+                (click)="create(createUserForm.value, 'back')">
+                <mat-icon >arrow_back</mat-icon>
+                Registar y Ver Grupo
+                
+        </button> 
+        <button mat-stroked-button color="primary" 
+                [disabled]="!createUserForm.valid || loading" 
+                (click)="create(createUserForm.value, 'refresh')">
+                Registar y Recargar 
+                <mat-icon >refresh</mat-icon>
+        </button> 
+        <button mat-stroked-button color="primary" dir="rtl"
+                [disabled]="!createUserForm.valid || loading" 
+                (click)="create(createUserForm.value, 'go')">
+                Registar y Ver en Detalle
+                <mat-icon >arrow_forward</mat-icon>
+        </button>    
+      </mat-card-actions> 
+       <p [hidden]="!loading">
+          <mat-progress-bar mode="indeterminate"> </mat-progress-bar> 
+      </p>           
+    </mat-card> 
+
+</article>

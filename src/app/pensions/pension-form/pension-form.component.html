@@ -1,0 +1,31 @@
+<article  fxLayout="column" fxLayoutAlign="space-evenly end">
+	<button mat-icon-button (click)="cancel()"><mat-icon>clear</mat-icon></button>
+</article>
+
+<article fxLayout="column" fxLayoutAlign="space-evenly center">
+	<form [formGroup]="pensionForm" novalidate>
+		<h3 class="center-text">
+			<span *ngIf="Pension">Editar Pension</span>
+			<span *ngIf="!Pension">Crear Pension</span>
+		</h3>
+		<mat-form-field  class="simple-container">
+			<mat-label>Nombre de la Pension</mat-label>          
+			<input matInput type="text"  formControlName="name" autofocus>
+			<mat-error *ngFor="let validation of validation_messages.name">
+				<mat-error *ngIf="pensionForm.get('name').hasError(validation.type) && (pensionForm.get('name').dirty || pensionForm.get('name').touched)">
+				{{validation.message}} 
+				</mat-error>
+			</mat-error>
+		</mat-form-field>		
+	</form>
+	<button mat-stroked-button		 
+			color="primary" 
+			[disabled]="!pensionForm.valid"
+			(click)="accept()">
+		<span *ngIf="Pension">Cambiar</span>
+		<span *ngIf="!Pension">Crear </span>
+	</button>
+
+</article>	    
+
+

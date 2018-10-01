@@ -1,0 +1,40 @@
+.icon {
+  padding: 0 5px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.mat-app-background{
+    background-color:rgb(245,245,245, 0.9);
+    margin:1em;
+    padding: 2em;
+    min-height: 80vh;
+
+
+}
+.mat-drawer {
+    background-color: rgb(255,255,255, 0.95);
+    color: rgba(0, 0, 0, 0.9);
+}
+
+h1.example-app-name {
+  margin-left: 8px;
+  cursor: pointer;
+}
+
+.footer{
+	background-color:rgb(245,245,245, 0.9);
+	margin: -2em 2em 2em 2em ;
+}
+
+.header-image{
+  background-size: cover;  
+}
+
+app-alert{
+  position: absolute !important;
+}
+
+

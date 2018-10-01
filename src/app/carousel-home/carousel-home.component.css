@@ -1,0 +1,27 @@
+/** /deep/ .slideshow-container[_ngcontent-c13] {
+    position: absolute !important;
+    display: block;
+    margin-top: -3em;
+    margin-left: -3em;
+    margin-bottom: 2em;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}*/
+
+.slideshow{
+
+      position: absolute !important;
+    display: block;
+    margin-top: -3em;
+    margin-left: -3em;
+    margin-bottom: 2em;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+
+}
+
+
+
+  
