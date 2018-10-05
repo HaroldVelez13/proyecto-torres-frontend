@@ -1,26 +1,27 @@
-<article fxLayout="row"  >
-  <section fxFlex="80">
+<article class="row align-items-start">
+  <section class="col-10 align-self-start">
     <h3>Formulario de Edicion de Empleados</h3>
     <p>Los Campos con <mat-icon color="warn" class="tiny">help</mat-icon>Son requeridos</p>
   </section>
-  <section class="btn-flotante" fxFlex="20" dir="rtl">
-      <a mat-fab color="primary" class="btn-edit" routerLink="/empleados" title="Ir a Lista De Empleados">
-        <mat-icon >group</mat-icon>
-      </a>
-      <a mat-fab color="primary" class="btn-edit" routerLink="/empleados/detalle/{{userId}}" title="Ver mas del Usuario">
-        <mat-icon >add</mat-icon>
-      </a>      
-
+  <section class="col-2 align-self-start">
+    <div class="row"> 
+        <a mat-fab color="primary" class="btn-edit" routerLink="/empleados" title="Ir a Lista De Empleados">
+          <mat-icon >group</mat-icon>
+        </a>
+        <a mat-fab color="primary" class="btn-edit" routerLink="/empleados/detalle/{{userId}}" title="Ver mas del Usuario">
+          <mat-icon >add</mat-icon>
+        </a>
+    </div>
+  
   </section>
 </article>
 
-<article>
-
-    <mat-card  class="mat-elevation-z8" *ngIf="user">      
-      <mat-card-content fxLayout="row wrap" fxLayout.xs="column wrap" fxLayoutAlign="space-around center" >         
-        <form [formGroup]="editUserForm" novalidate>
-          <section fxFlex.gt-xs="100%" fxFlex.gt-md="14%"> 
-            <p class="simple-container" fxLayout="column" fxLayoutAlign="start center">  
+<article class="row justify-content-center">
+    <mat-card  class="mat-elevation-z8" >      
+      <mat-card-content >         
+        <form [formGroup]="editUserForm" novalidate *ngIf="user" class="row justify-content-between">
+          <section class="col-6 offset-3  col-md-2 offset-md-0"> 
+            <p class="row justify-content-center">  
               <img class="user-image" [src]="avatar" />     
               <button mat-raised-button (click)="openInput()">
                 Imagen de Perfil
@@ -29,7 +30,7 @@
             </p>
           </section>
 
-          <section fxFlex.gt-xs="100%" fxFlex.gt-md="30%" fxFlexOffset="2">
+          <section class="col-10 offset-1 col-md-3 offset-md-0">
             <mat-form-field class="simple-container">
               <mat-label>Nombre(s)</mat-label>
               <input matInput type="text" placeholder="Nombre Completo" formControlName="name" autofocus>
@@ -125,7 +126,7 @@
             </mat-form-field>
         </section>
 
-        <section fxFlex.gt-xs="100%" fxFlex.gt-md="30%" fxFlexOffset="2">
+        <section class="col-10 offset-1 col-md-3 offset-md-0">
             <mat-form-field class="simple-container">
               <mat-label>Direccion de recidencia</mat-label>
               <input matInput placeholder="Direccion" formControlName="address" >
@@ -199,7 +200,7 @@
             </mat-form-field>
         </section>
 
-        <section  fxFlex.gt-xs="100%" fxFlex.gt-md="20%" fxFlexOffset="2">
+        <section class="col-10 offset-1 col-md-3 offset-md-0">
             <mat-form-field class="simple-container">
               <mat-select placeholder="Nombre Eps" formControlName="ep_id">
                 <mat-option *ngFor="let ep of eps" [value]="ep.id">
@@ -264,32 +265,40 @@
         </section>            
         </form>  
       </mat-card-content>
-      <mat-card-actions fxLayout="row" fxLayoutAlign="space-between center">
-        <button mat-stroked-button color="primary"  dir="ltr"
-                [disabled]="!editUserForm.valid || loading" 
-                (click)="edit(editUserForm.value, 'back')">
-                <mat-icon >arrow_back</mat-icon>
-                Cambiar E ir a la lista
-        </button>  
-        <a  mat-fab  
-            color="primary" 
-            (click)="changePassword()"
-            class="btn-strong"
-            matTooltip="Cambiar la Contraseña" 
-            matTooltipPosition="below">
-          <mat-icon >vpn_key</mat-icon>
-        </a>
-        <button mat-stroked-button color="primary"  dir="rtl"
-                [disabled]="!editUserForm.valid || loading" 
-                (click)="edit(editUserForm.value, 'go')">
-                Cambiar y ver en Detalle
-                <mat-icon >arrow_forward</mat-icon>
-        </button>   
-        
+      <mat-card-actions>        
+        <div class="row justify-content-center">
+          <div class="col">
+            <button mat-stroked-button color="primary"  
+                    [disabled]="!editUserForm.valid || loading" 
+                    (click)="edit(editUserForm.value, 'back')"
+                    class="little-space">
+                    <mat-icon >arrow_back</mat-icon>
+                    Cambiar y Listar
+            </button>
+          </div> 
+          <div class="col">
+            <a  mat-fab  
+                color="primary" 
+                (click)="changePassword()"
+                class="btn-strong little-space"
+                matTooltip="Cambiar la Contraseña" 
+                matTooltipPosition="below">
+              <mat-icon >vpn_key</mat-icon>
+            </a>
+          </div>
+          <div class="col">
+              <button mat-stroked-button color="primary" 
+                      [disabled]="!editUserForm.valid || loading" 
+                      (click)="edit(editUserForm.value, 'go')"
+                      class="little-space">
+                      Cambiar y ver
+                      <mat-icon >arrow_forward</mat-icon>
+              </button>
+          </div>
+        </div>          
       </mat-card-actions>  
-      <p [hidden]="!loading">
+      <p [hidden]="!loading" >
           <mat-progress-bar mode="indeterminate"> </mat-progress-bar> 
       </p>     
     </mat-card>
-
 </article>

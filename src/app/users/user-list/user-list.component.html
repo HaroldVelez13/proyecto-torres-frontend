@@ -25,22 +25,29 @@
 			</mat-card-subtitle>			    
 		</mat-card-header>		  	  
 		<mat-card-content>
-			<div class="row justify-content-between">									
-				<button mat-icon-button class="color-warning little-space col" 
-									routerLink="/empleados/editar/{{user.id}}"
-									title="Editar a {{user.name}}">
-					<mat-icon>edit</mat-icon>
-				</button>	
-				<button mat-icon-button class="color-accent little-space col" 
-									routerLink="/empleados/detalle/{{user.id}}"
-									title="Ver mas de {{user.name}}">
-					<mat-icon>add</mat-icon>
-				</button>
-				<button mat-icon-button class="color-danger little-space col" 
-									(click)="deleteUser(user, $index)"
-									title="Eliminar a {{user.name}}">
-					<mat-icon>delete_forever</mat-icon>
-				</button>
+			<div class="row justify-content-between">	
+				<div class="col">
+					<button mat-icon-button class="color-warning little-space" 
+										routerLink="/empleados/editar/{{user.id}}"
+										title="Editar a {{user.name}}">
+						<mat-icon>edit</mat-icon>
+					</button>
+				</div>								
+				<div class="col">
+					<button mat-icon-button class="color-accent little-space" 
+							routerLink="/empleados/detalle/{{user.id}}"
+							title="Ver mas de {{user.name}}">
+						<mat-icon>add</mat-icon>
+					</button>
+				</div>	
+				<div class="col">
+					<button mat-icon-button class="color-danger little-space" 
+							(click)="deleteUser(user, $index)"
+							title="Eliminar a {{user.name}}">
+						<mat-icon>delete_forever</mat-icon>
+					</button>
+				</div>
+				
 			</div>							
 		</mat-card-content>
 	</mat-card>		
