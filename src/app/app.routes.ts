@@ -7,14 +7,13 @@ const AppRoutes: Routes = [
 	//{path: 'empleados', loadChildren: './users/users.module#UsersModule' , canActivate: [AuthGuard]},
 
 	//Pricipals Componentets 
-    { path: '',   			component: CarouselHomeComponent }, 
-    { path: 'login', 		component: SignInComponent }, 
+    { path: '',   			        component: CarouselHomeComponent }, 
+    { path: 'login', 		        component: SignInComponent }, 
     //Modules for entry
-    { path: 'empleados', 	loadChildren: './users/users.module#UsersModule' },
-	{ path: 'eps', 			loadChildren: './eps/eps.module#EpsModule' },
-	{ path: 'pensiones', 	loadChildren: './pensions/pensions.module#PensionsModule' },
-    { path: 'evidencias',   loadChildren: './carousels/carousels.module#CarouselsModule' },
-	{ path: 'trabajos', 	loadChildren: './jobs/jobs.module#JobsModule' },
+    { path: 'empleados', 	        loadChildren: './users/users.module#UsersModule' },
+	{ path: 'seguridad-social', 	loadChildren: './social-security/social-security.module#SocialSecurityModule' },
+    { path: 'evidencias',           loadChildren: './carousels/carousels.module#CarouselsModule' },
+	{ path: 'trabajos', 	        loadChildren: './jobs/jobs.module#JobsModule' },
     //Any other route (No autorizate) 
     { path: '**',             redirectTo:'', pathMatch : 'full' },
 

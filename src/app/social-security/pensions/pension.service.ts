@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { IPension } from './ipension';
-import { API_URL } from '../_config/constants';
+import { API_URL } from '../../_config/constants';
 
 @Injectable({
   providedIn: 'root'

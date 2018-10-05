@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { IEps } from './ieps';
-import { API_URL } from '../_config/constants';
+import { API_URL } from '../../_config/constants';
 
 @Injectable({
   providedIn: 'root'

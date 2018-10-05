@@ -9,7 +9,7 @@ import  { MatSnackBar,
 
 import {IEps} from '../ieps';
 import {EpsService} from '../eps.service';
-import { DialogDeleteComponent } from '../../_helpers-components/dialog-delete/dialog-delete.component';
+import { DialogDeleteComponent } from '../../../_helpers-components/dialog-delete/dialog-delete.component';
 
 import { EpsFormComponent} from '../eps-form/eps-form.component';
 

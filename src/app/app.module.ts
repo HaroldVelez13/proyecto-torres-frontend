@@ -42,8 +42,8 @@ import { AuthService } from './_config/auth/auth.service';
 import { CarouselService } from './carousels/carousel.service';
 import { AlertService } from './alert/alert.service';
 import { UserService } from './users/user.service';
-import {EpsService} from './eps/eps.service';
-import { PensionService } from './pensions/pension.service';
+import {EpsService} from './social-security/eps/eps.service';
+import { PensionService } from './social-security/pensions/pension.service';
 import { JobService } from './jobs/job.service';
 
 
