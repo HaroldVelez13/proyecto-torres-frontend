@@ -1,42 +1,53 @@
-<article class="button-row" fxLayout="row" fxLayoutAlign="end stretch">
-  <a mat-fab color="primary" routerLink="/evidencias/crear">
-  	<mat-icon>add_photo_alternate</mat-icon>
-  </a>
+<article class="row justify-content-end">
+	<section class="col-10 col-md-11">
+			<h2>Lista de Evidencias</h2>
+	</section>
+	<section class="col-2 col-md-1">
+		<a mat-fab color="primary" routerLink="/evidencias/crear">
+			<mat-icon>add_photo_alternate</mat-icon>
+		</a>
+	</section>  
 </article>
 
-<article fxLayout="row wrap" fxLayout.xs="column wrap">
-	<section fxFlex.gt-xs="50%" [fxFlex.gt-md]="regularDistribution"  *ngFor="let slide of slides">
-		<mat-card class="mat-elevation-z8 list-card" fxLayout="column" fxLayoutAlign="start center">
-			<mat-card-header class="left-text">
-				<mat-list>
-					<mat-list-item>					    	
-					    	<h6 mat-line>{{slide.name | titlecase}}</h6>
-							<small mat-line> Evidencia</small>
-							<h6 mat-line>{{slide.description}}</h6>
-							<small mat-line> Descripcion</small>							    	
-							<small mat-line *ngIf="slide.state=='active', else state"> (Activa)</small>
-							<ng-template #state>
-								<small mat-line>(Inactiva)</small>
-							</ng-template>							    	
-				    </mat-list-item>				 	
-				</mat-list>
-			</mat-card-header>
-				<img mat-card-image [src]="api_img+slide.url_slide">
-		  	<mat-card-content fxLayout="row" fxLayoutAlign="space-between center" >
-				
-		    	<button mat-icon-button class="color-warning little-space" 
-		    						routerLink="/evidencias/editar/{{slide.id}}"
-		    						title="Editar a {{slide.name}}">
-		    		<mat-icon>edit</mat-icon>
-		    	</button>	
-		    	<button mat-icon-button class="color-danger little-space" 
-		    						(click)="deleteSlide(slide, $index)"
-		    						title="Eliminar a {{slide.name}}">
-		    		<mat-icon>delete_forever</mat-icon>
-		    	</button>
-		    		
-		    	    
-		  	</mat-card-content>
-		</mat-card>
-	</section>
+<article class="row justify-content-center justify-content-md-start">
+			
+	<mat-card 	class="mat-elevation-z8 list-card col-lg-3 col-sm-10 col-md-6" 
+				*ngFor="let slide of slides">
+		<mat-card-header class="left-text row justify-content-start">
+			<mat-list>
+				<mat-list-item>					    	
+						<h6 mat-line>{{slide.name | titlecase}}</h6>
+						<small mat-line> Evidencia</small>
+						<h6 mat-line *ngIf="slide.description, else des">{{slide.description | titlecase}}</h6>
+						<ng-template #des>
+							<h6 mat-line>---</h6>
+						</ng-template>
+						<small mat-line> Descripcion</small>							    	
+						<small mat-line *ngIf="slide.state=='active', else state"> (Activa)</small>
+						<ng-template #state>
+							<small mat-line>(Inactiva)</small>
+						</ng-template>							    	
+				</mat-list-item>				 	
+			</mat-list>
+		</mat-card-header>
+			<img mat-card-image [src]="api_img+slide.url_slide">
+		<mat-card-content>
+			<div class="row justify-content-center">
+				<div class="col-3">
+					<button mat-icon-button class="color-warning little-space" 
+						routerLink="/evidencias/editar/{{slide.id}}"
+						title="Editar a {{slide.name}}">
+						<mat-icon>edit</mat-icon>
+					</button>
+				</div>
+				<div class="col-3">
+					<button mat-icon-button class="color-danger little-space" 
+									(click)="deleteSlide(slide, $index)"
+									title="Eliminar a {{slide.name}}">
+						<mat-icon>delete_forever</mat-icon>
+					</button>
+				</div>
+			</div>		
+		</mat-card-content>
+	</mat-card>		
 </article>

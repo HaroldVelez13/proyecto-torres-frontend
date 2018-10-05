@@ -16,7 +16,6 @@ import {MatSnackBar} from '@angular/material';
 export class CarouselsListComponent implements OnInit {
   slides: ICarousel[] = [];
   api_img = Constants.BASE_URL+'images/proyecto_torres/slides/';
-  regularDistribution = 100 / 4 + '%';
   headersButtons=[{  icon:'add_photo_alternate',
                      route:'/evidencias/crear',
                      title: 'Crear Evidencia'

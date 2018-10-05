@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
-import {FlexLayoutModule} from '@angular/flex-layout';
 import { 
   MatButtonModule,
   MatCardModule,
@@ -32,8 +31,7 @@ const carouselsRoutes: Routes = [
     ReactiveFormsModule,
     CommonModule,
     RouterModule.forChild(carouselsRoutes),
-
-    FlexLayoutModule,
+        
    	MatButtonModule,
    	MatCardModule,
    	MatProgressBarModule, 
