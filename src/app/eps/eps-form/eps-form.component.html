@@ -1,27 +1,32 @@
-<article fxLayout="column" fxLayoutAlign="space-evenly end">
+<article class="row justify-content-center">
+	<section class="col-1 align-self-start">
 		<button mat-icon-button (click)="cancel()"><mat-icon>clear</mat-icon></button>
-</article>
-<article fxLayout="column" fxLayoutAlign="space-evenly center">
-	<form [formGroup]="epsForm" novalidate>
-		<h3 class="center-text">
-			<span *ngIf="Eps">Editar Eps</span>
-			<span *ngIf="!Eps">Crear Eps</span>
-		</h3>
-		<mat-form-field  class="simple-container">
-			<mat-label>Nombre de la Eps</mat-label>          
-			<input matInput type="text"  formControlName="name" autofocus>
-			<mat-error *ngFor="let validation of validation_messages.name">
-				<mat-error *ngIf="epsForm.get('name').hasError(validation.type) && (epsForm.get('name').dirty || epsForm.get('name').touched)">
-				{{validation.message}} 
+	</section>
+	<section class="dialog-content center-text col-10">
+		<form [formGroup]="epsForm" novalidate>
+			<h3 class="center-text">
+				<span *ngIf="Eps">Editar Eps</span>
+				<span *ngIf="!Eps">Crear Eps</span>
+			</h3>
+			<mat-form-field  class="simple-container">
+				<mat-label>Nombre de la Eps</mat-label>          
+				<input matInput type="text"  formControlName="name" autofocus>
+				<mat-error *ngFor="let validation of validation_messages.name">
+					<mat-error *ngIf="epsForm.get('name').hasError(validation.type) && (epsForm.get('name').dirty || epsForm.get('name').touched)">
+					{{validation.message}} 
+					</mat-error>
 				</mat-error>
-			</mat-error>
-		</mat-form-field>		
-	</form>	    
-    <button mat-stroked-button 
+			</mat-form-field>		
+		</form>
+	</section>
+	<section class="col-10 offset-1 center-text">
+		<button mat-stroked-button 
     		color="primary" 
     		[disabled]="!epsForm.valid"
     		(click)="accept()">
     		<span *ngIf="Eps">Cambiar</span>
     		<span *ngIf="!Eps">Crear </span>
-    </button>
+    	</button>
+	</section>    
+
 </article>

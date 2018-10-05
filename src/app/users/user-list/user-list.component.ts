@@ -16,7 +16,6 @@ import {MatSnackBar} from '@angular/material';
 export class UserListComponent implements OnInit {
   users: IUser[] = [];
   api_img = Constants.BASE_URL+'images/proyecto_torres/avatars/';
-  regularDistribution = 100 / 4 + '%';
   constructor(private userService: UserService,
               private dialog: MatDialog,
               public snackBar: MatSnackBar) { }

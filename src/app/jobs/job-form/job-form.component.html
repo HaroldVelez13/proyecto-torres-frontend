@@ -1,22 +1,22 @@
-<article fxLayout="row">
-  <section fxFlex="80">
+<article class="row align-items-start">
+  <section class="col-10 col-md-11 align-self-start">
     <h3>Formulario de <span *ngIf="!jobId">Registro</span>  <span *ngIf="jobId">Edicion</span> de los Trabajos</h3>
     <p>Los Campos con <mat-icon color="warn" class="tiny">help</mat-icon>Son requeridos</p>
   </section>
-  <section class="btn-flotante" fxFlex="20" dir="rtl">
+  <section class="col-2 col-md-1 align-self-start">
     <a mat-fab color="primary" routerLink="/trabajos" title="Ir a Lista de Empleados">
       <mat-icon >work</mat-icon>
     </a>
   </section>
 </article>
 
-<article>
-	<mat-horizontal-stepper linear  id="stepper">
-		<mat-step  [completed]="stepFormCompleted">			
-			<ng-template matStepLabel >Datos Basicos Del trabajo</ng-template>
-			<section fxLayout="column" fxLayoutAlign="center center">   
-			    <mat-card  class="mat-elevation-z8">    
-			      <mat-card-content  class="card-job">
+<article class="row align-items-center">
+	<mat-horizontal-stepper linear  id="stepper" class="col-10 offset-1">
+		<mat-step  [completed]="stepFormCompleted" class="row align-items-center">			
+			<ng-template matStepLabel class="col-12">Datos Basicos Del trabajo</ng-template>
+			<section class="mat-elevation-z8 col-8 offset-2 col-md-6 offset-md-3">   
+			    <mat-card class="row">    
+			      <mat-card-content >
 			        <form [formGroup]="jobForm" novalidate >        
 			            <mat-form-field class="simple-container">
 			              <mat-label> Nombre del Empleador/Empresa</mat-label>
@@ -112,12 +112,16 @@
 			                                
 			        </form>  
 			      </mat-card-content>
-			      <mat-card-actions  fxLayout="row" fxLayoutAlign="space-between center" >
-			        <button mat-stroked-button color="primary" 			        		
-			                [disabled]="!jobForm.valid || loading" 
-			                (click)="formAction(jobForm.value)">
-			                <span *ngIf="!jobId">Registro</span>  <span *ngIf="jobId">Editar</span>              
-			        </button>			         
+			      <mat-card-actions >
+							<div class="row align-items-center">
+								<div class="col-4 offset-4 center-text">
+									<button mat-stroked-button color="primary" 			        		
+													[disabled]="!jobForm.valid || loading" 
+													(click)="formAction(jobForm.value)">
+													<span *ngIf="!jobId">Registro</span>  <span *ngIf="jobId">Editar</span>              
+									</button>
+								</div>
+							</div>			         
 			      </mat-card-actions> 
 			       <p [hidden]="!loading">
 			          <mat-progress-bar mode="indeterminate"> </mat-progress-bar> 
@@ -126,12 +130,12 @@
 			</section>
 					
 		</mat-step>
-		<mat-step >
-			<ng-template matStepLabel>Asignar Empleados</ng-template>
+		<mat-step class="row align-items-center">
+			<ng-template matStepLabel class="col-12">Asignar Empleados</ng-template>
 
-			<section fxLayout="column" fxLayoutAlign="center center">   
-			    <mat-card  class="mat-elevation-z8">    
-			      <mat-card-content  class="card-job">
+			<section class="mat-elevation-z8 col-10 offset-1 col-md-8 offset-md-2">   
+			    <mat-card  class="row">    
+			      <mat-card-content>
 			        <mat-selection-list #users_list [(ngModel)]="selectedOptions" (ngModelChange)="onSelection($event)">
 						<mat-list-option *ngFor="let user of users" [value]="user.id" >
 							<mat-icon mat-list-icon>perm_contact_calendar</mat-icon>
@@ -140,16 +144,24 @@
 						</mat-list-option>
 					</mat-selection-list>
 			      </mat-card-content>
-			      <mat-card-actions  fxLayout="row" fxLayoutAlign="space-between center" >
-			        	<button mat-stroked-button color="primary" class="little-space" matStepperPrevious>Volver</button>
-						<button mat-stroked-button color="primary" class="little-space" (click)="addUsers()">Asignar</button>
+			      <mat-card-actions>
+							<div>
+								<button mat-stroked-button color="primary" class="little-space" matStepperPrevious>
+									Volver
+								</button>
+							</div>
+						<div>
+							<button mat-stroked-button color="primary" class="little-space" (click)="addUsers()">
+								Asignar
+							</button>		
+						</div>
+
 					</mat-card-actions> 
 			       <p [hidden]="!loading">
 			          <mat-progress-bar mode="indeterminate"> </mat-progress-bar> 
 			      </p>           
 			    </mat-card> 
 			</section>
-
 		</mat-step>
 	</mat-horizontal-stepper>
 </article>

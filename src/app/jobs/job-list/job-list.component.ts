@@ -13,8 +13,7 @@ import {MatSnackBar} from '@angular/material';
   styleUrls: ['./job-list.component.css']
 })
 export class JobListComponent implements OnInit {
-  jobs: IJob[] = [];
-  regularDistribution = 100 / 4 + '%';
+  jobs: IJob[] = []; 
 
   constructor( 	private jobService: JobService,
   				private dialog: MatDialog,

@@ -41,8 +41,8 @@ export class JobService {
 	public create(job: IJob):Observable<IJob> {
 		var datePipe = new DatePipe('es-CO');
 	    job.init_date = datePipe.transform(job.init_date, 'yyyy-MM-dd');
-	    if (job.init_date) {
-	    	job.init_date = datePipe.transform(job.init_date, 'yyyy-MM-dd');
+	    if (job.finish_date) {
+	    	job.finish_date = datePipe.transform(job.finish_date, 'yyyy-MM-dd');
 	    }
 	    return this.http.post<any>(this.url+'create', job)
 		    .pipe(map((data) => {
@@ -64,8 +64,8 @@ export class JobService {
 	public update(job: IJob):Observable<IJob> {
 		var datePipe = new DatePipe('es-CO');
 	    job.init_date = datePipe.transform(job.init_date, 'yyyy-MM-dd');
-	    if (job.init_date) {
-	    	job.init_date = datePipe.transform(job.init_date, 'yyyy-MM-dd');
+	    if (job.finish_date) {
+	    	job.finish_date = datePipe.transform(job.finish_date, 'yyyy-MM-dd');
 	    }	    
 	    return this.http.put<any>(this.url+'update/' + job.id, job)
 		    .pipe(map((data) => {

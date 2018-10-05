@@ -1,7 +1,7 @@
-.card-size {
-  max-width: 270px;
-}
 
 .mat-card-image:first-child {
-    margin-top: -38px;
+    max-height: 20em;
+}
+.row{
+  margin-bottom: 2em;
 }
