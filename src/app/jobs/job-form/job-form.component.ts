@@ -151,9 +151,14 @@ export class JobFormComponent implements OnInit {
 	}
 
 	public addUsers(){
-		this.jobService.addUsers(this.jobId, this.selectedOptions ).subscribe((data)=>{
-			console.log(data.job);
-			console.log(data.users);
+		var id;
+		if(this.jobId){
+			id=this.jobId;
+		}
+		if(this.job){
+			id=this.job.id;
+		}
+		this.jobService.addUsers(id, this.selectedOptions ).subscribe((data)=>{
 		});
 
 	}
