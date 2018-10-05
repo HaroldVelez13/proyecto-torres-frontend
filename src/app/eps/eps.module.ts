@@ -1,10 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
-import { FormsModule,ReactiveFormsModule } from '@angular/forms';
-import {FlexLayoutModule} from '@angular/flex-layout';
-
-import { 
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';import { 
   MatButtonModule, 
   MatIconModule,  
   MatFormFieldModule,
@@ -29,7 +26,7 @@ const epesRoutes: Routes = [
     RouterModule.forChild(epesRoutes),
     FormsModule,
     ReactiveFormsModule,
-    FlexLayoutModule,
+    
 	  MatButtonModule, 
   	MatIconModule,  
   	MatFormFieldModule,
