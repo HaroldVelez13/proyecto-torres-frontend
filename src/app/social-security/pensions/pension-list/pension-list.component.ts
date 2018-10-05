@@ -9,7 +9,7 @@ import  { MatSnackBar,
 
 import {IPension} from '../ipension';
 import {PensionService} from '../pension.service';
-import { DialogDeleteComponent } from '../../_helpers-components/dialog-delete/dialog-delete.component';
+import { DialogDeleteComponent } from '../../../_helpers-components/dialog-delete/dialog-delete.component';
 
 import { PensionFormComponent} from '../pension-form/pension-form.component';
 
