@@ -48,12 +48,7 @@ export class CarouselHomeComponent implements OnInit {
       let image = carousels[key].url_slide;
       images.push(this.url_image+image);
     });
-
-/*    console.log(carousels);
-    carousels.forEach( img =>
-      images.push(this.url_image+img.url_slide)
-    );*/
-    console.log(images);
+    
     this.imageSources = images;
   }
 

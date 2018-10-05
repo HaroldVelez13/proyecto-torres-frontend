@@ -2,9 +2,9 @@
 	height: 8em;
     width: 8em;
     border-radius: 50%;
-    flex-shrink: 0;
     margin-bottom: 1em;
     text-align: center;
+    align-content: center;
 }
 
 .card-title{

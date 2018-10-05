@@ -1,37 +1,45 @@
 
-<article class="button-row" fxLayout="row" fxLayoutAlign="end stretch">
-  <a mat-fab color="primary" routerLink="/empleados/crear">
-  	<mat-icon>person_add</mat-icon>
-  </a>
+<article class="row justify-content-end">
+	<section class="col-1">
+		<a mat-fab color="primary" routerLink="/empleados/crear">
+			<mat-icon>person_add</mat-icon>
+		</a>
+	</section>
 </article>
 
-<article fxLayout="row wrap" fxLayout.xs="column wrap" > 
-	<section fxFlex.gt-xs="50%" [fxFlex.gt-md]="regularDistribution"  *ngFor="let user of users">
-		<mat-card class="mat-elevation-z8 list-card" fxLayout="column" fxLayoutAlign="start center">
-			<img class="card-image" [src]="api_img+user.img_url" >
-			<mat-card-header >
-    			<mat-card-title class="card-title">{{user.name| titlecase}}</mat-card-title>
-    			<mat-card-subtitle> {{user.last_name| titlecase}}<small> ( {{user.rol| titlecase}} )</small></mat-card-subtitle>			    
-		  	</mat-card-header>		  	  
-		  	<mat-card-content fxLayout="row" fxLayoutAlign="space-between center" >
-		    	<button mat-icon-button class="color-warning little-space" 
-		    						routerLink="/empleados/editar/{{user.id}}"
-		    						title="Editar a {{user.name}}">
-		    		<mat-icon>edit</mat-icon>
-		    	</button>	
-		    	<button mat-icon-button class="color-accent little-space" 
-		    						routerLink="/empleados/detalle/{{user.id}}"
-		    						title="Ver mas de {{user.name}}">
-		    		<mat-icon>add</mat-icon>
-		    	</button>
-		    	<button mat-icon-button class="color-danger little-space" 
-		    						(click)="deleteUser(user, $index)"
-		    						title="Eliminar a {{user.name}}">
-		    		<mat-icon>delete_forever</mat-icon>
-		    	</button>	
-		    	    
-		  	</mat-card-content>
-		</mat-card>	
-	</section>	
+<article class="row align-items-center" > 	
+	<mat-card *ngFor="let user of users"
+		class="mat-elevation-z8 list-card col-lg-3 col-md-4 col-sm-6 col-10" >
+		<img class="card-image" [src]="api_img+user.img_url" >
+		<mat-card-header class="col-12 align-self-center">
+			<mat-card-title class="card-title col-12 align-self-center">
+				{{user.name| titlecase}}
+			</mat-card-title>
+			<mat-card-subtitle class="col-12 align-self-center">
+				{{user.last_name| titlecase}}
+				<small> 
+					( {{user.rol| titlecase}} )
+				</small>
+			</mat-card-subtitle>			    
+		</mat-card-header>		  	  
+		<mat-card-content class="col-12 align-self-center" >
+			<button mat-icon-button class="color-warning little-space col-3" 
+								routerLink="/empleados/editar/{{user.id}}"
+								title="Editar a {{user.name}}">
+				<mat-icon>edit</mat-icon>
+			</button>	
+			<button mat-icon-button class="color-accent little-space col-3" 
+								routerLink="/empleados/detalle/{{user.id}}"
+								title="Ver mas de {{user.name}}">
+				<mat-icon>add</mat-icon>
+			</button>
+			<button mat-icon-button class="color-danger little-space col-3" 
+								(click)="deleteUser(user, $index)"
+								title="Eliminar a {{user.name}}">
+				<mat-icon>delete_forever</mat-icon>
+			</button>
+				
+		</mat-card-content>
+	</mat-card>		
 </article>
 

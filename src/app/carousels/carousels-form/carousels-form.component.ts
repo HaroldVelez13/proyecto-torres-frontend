@@ -85,20 +85,20 @@ export class CarouselsFormComponent implements OnInit {
   		});
   	}
 
-	private toggleChange(event: any){
+	public toggleChange(event: any){
 		this.checked = event.checked;	
 	}
 
 	/**
 	* this is used to trigger the input
 	*/ 
-	private openInput(){ 
+	public openInput(){ 
 	    // your can use ElementRef for this later
 	    document.getElementById("evidencia").click();
 	    return false;	    
 	}  
 	  
-	private fileChange(file:any) {
+	public fileChange(file:any) {
 		if (file.target.files && file.target.files[0]) {
 
 		  var reader = new FileReader();
@@ -111,7 +111,7 @@ export class CarouselsFormComponent implements OnInit {
 	    }
 	}
 
-	private formAction(form){
+	public formAction(form){
 
 		if (this.slideForm.invalid) {
 			return
@@ -135,8 +135,6 @@ export class CarouselsFormComponent implements OnInit {
 
 	private createSlide(carouselForm){		
 		this.loading = true;
-		console.log(this.checked);
-		console.log(carouselForm.state);
 		this.carouselService.create(carouselForm)
 	       .pipe(first())
 	        .subscribe(
@@ -154,8 +152,6 @@ export class CarouselsFormComponent implements OnInit {
 
 	private updateSlide(id:number, carouselForm){
 		this.loading = true;
-		console.log(this.checked);
-		console.log(carouselForm.state);
 		this.carouselService.update(id,carouselForm).pipe(first())
 	        .subscribe(
 	            slide => {

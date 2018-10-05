@@ -268,12 +268,7 @@
                         matTooltip="Por defecto la fecha es la de hoy" 
                         matTooltipPosition="below"
                         class="tiny">help
-              </mat-icon>
-              <mat-error *ngFor="let validation of create_validation_messages.init_at">
-                <mat-error *ngIf="createUserForm.get('init_at').hasError(validation.type) && (createUserForm.get('init_at').dirty || createUserForm.get('init_at').touched)">
-                  {{validation.message}}
-                </mat-error>
-              </mat-error>
+              </mat-icon>              
             </mat-form-field>
         </section>            
         </form>  

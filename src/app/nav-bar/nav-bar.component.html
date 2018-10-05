@@ -42,15 +42,16 @@
 	    <mat-sidenav-content >
 	    	<app-alert></app-alert>
 
-	    	<main class="mat-app-background" >
-				<router-outlet>
-				</router-outlet>	    		
+	    	<main class="container-fluid">
+				<div class="mat-app-background">
+					<router-outlet> </router-outlet>
+				</div>					    		
 	    	</main>
 
-			<footer fxLayout="row" fxLayoutAlign="end center"  dir="rtl"  >
-				<div class="footer">
+			<footer class="container-fluid">
+				<p class="footer">
 					&copy; haroldvelez13@hotmail.com <strong> 2018 </strong>
-				</div>         
+				</p>         
 	        </footer> 
    
 	    </mat-sidenav-content>

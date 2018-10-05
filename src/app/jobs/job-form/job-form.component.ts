@@ -117,7 +117,7 @@ export class JobFormComponent implements OnInit {
 
 	}
 
-	private formAction(form:any){
+	public formAction(form:any){
 		
 		if (this.jobForm.invalid) {
 			return
@@ -150,7 +150,7 @@ export class JobFormComponent implements OnInit {
 
 	}
 
-	private addUsers(){
+	public addUsers(){
 		this.jobService.addUsers(this.jobId, this.selectedOptions ).subscribe((data)=>{
 			console.log(data.job);
 			console.log(data.users);
@@ -162,7 +162,7 @@ export class JobFormComponent implements OnInit {
 		this.stepper.next();
 	}
 
-	private onSelection(event:any){		
+	public onSelection(event:any){		
 		this.selectedOptions = event;
 	}
 

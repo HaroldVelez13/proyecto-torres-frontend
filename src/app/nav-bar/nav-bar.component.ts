@@ -14,7 +14,7 @@ import {Router} from '@angular/router';
 })
 export class NavBarComponent implements OnInit, OnDestroy {
 
-  private mobileQuery: MediaQueryList;
+  public mobileQuery: MediaQueryList;
   private subscription: Subscription;
   public rol$: any;
   private _mobileQueryListener: () => void;

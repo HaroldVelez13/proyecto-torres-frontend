@@ -116,7 +116,7 @@
 			        <button mat-stroked-button color="primary" 			        		
 			                [disabled]="!jobForm.valid || loading" 
 			                (click)="formAction(jobForm.value)">
-			                <span *ngIf="!slideId">Registro</span>  <span *ngIf="slideId">Editar</span>              
+			                <span *ngIf="!jobId">Registro</span>  <span *ngIf="jobId">Editar</span>              
 			        </button>			         
 			      </mat-card-actions> 
 			       <p [hidden]="!loading">
