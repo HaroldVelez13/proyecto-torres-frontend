@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
-import {FlexLayoutModule} from '@angular/flex-layout';
-
 import { 
   MatButtonModule, 
   MatIconModule,  
@@ -28,7 +26,7 @@ const pensionsRoutes: Routes = [
     RouterModule.forChild(pensionsRoutes),
     FormsModule,
     ReactiveFormsModule,
-    FlexLayoutModule,
+    
   	MatButtonModule, 
   	MatIconModule,  
   	MatFormFieldModule,
