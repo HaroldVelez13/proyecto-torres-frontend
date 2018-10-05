@@ -43,7 +43,8 @@ mat-sidenav {
   margin-bottom:2em;
 }
 .user-image {
-  width: 100%;
+  max-height: 15em;
+  max-width: 15em;
   border: 1px solid grey;
   border-radius: 50%;
 }
