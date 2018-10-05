@@ -4,7 +4,6 @@ import { HttpClientModule } from '@angular/common/http'
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
 import localeEsCo from '@angular/common/locales/es-CO';
 import { registerLocaleData } from '@angular/common';
 
@@ -21,7 +20,6 @@ import { AlertComponent } from './alert/alert.component';
 import { DialogDeleteComponent } from './_helpers-components/dialog-delete/dialog-delete.component';
 
 //styles
-import {FlexLayoutModule} from '@angular/flex-layout';
 import { 
   MAT_DATE_LOCALE,
   MatButtonModule, 
