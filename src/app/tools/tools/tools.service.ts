@@ -23,7 +23,7 @@ export class ToolsService {
   public getAll():Observable<[ITool]> {
     return this.http.get<any>(this.url)
       .pipe( map((data) => {
-          let tools = data.tools.json();
+          let tools = data.tools;
           this.$Tools.next(tools);
           return tools;
     }));   
@@ -33,7 +33,7 @@ export class ToolsService {
 
     return this.http.post<any>(this.url+'create', category)
       .pipe(map((data) => {
-          let tools = data.tools.json();
+          let tools = data.tools;
           this.$Tools.next(tools);
           return  tools;
       }));
@@ -42,7 +42,7 @@ export class ToolsService {
 	    
     return this.http.put<any>(this.url+'update/' + category.id, category)
       .pipe(map((data) => {
-        let tools = data.tools.json();
+        let tools = data.tools;
         this.$Tools.next(tools);
         return tools;
       }));
@@ -51,7 +51,7 @@ export class ToolsService {
   public delete(id: number):Observable<ITool> {
     return this.http.delete<any>(this.url+'delete/'+ id)
       .pipe( map((data) => {
-          let tools = data.tools.json();
+          let tools = data.tools;
           this.$Tools.next(tools);
         return tools;
       }));

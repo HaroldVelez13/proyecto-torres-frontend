@@ -11,6 +11,7 @@ import { API_URL } from '../../_config/constants';
 export class CategoryService {
   private url:string;
   public $Categories = new Subject<any>();
+  
 
   constructor(private http: HttpClient) {
     this.url = API_URL+'categories/';
@@ -23,7 +24,7 @@ export class CategoryService {
   public getAll():Observable<[ICategory]> {
     return this.http.get<any>(this.url)
       .pipe( map((data) => {
-          let categories = data.categories.json();
+          let categories = data.categories;
           this.$Categories.next(categories);
           return categories;
     }));   
@@ -33,7 +34,7 @@ export class CategoryService {
 
     return this.http.post<any>(this.url+'create', category)
       .pipe(map((data) => {
-          let categories = data.categories.json();
+          let categories = data.categories;
           this.$Categories.next(categories);
           return  categories;
       }));
@@ -42,7 +43,7 @@ export class CategoryService {
 	    
     return this.http.put<any>(this.url+'update/' + category.id, category)
       .pipe(map((data) => {
-        let categories = data.categories.json();
+        let categories = data.categories;
         this.$Categories.next(categories);
         return categories;
       }));
@@ -51,7 +52,7 @@ export class CategoryService {
   public delete(id: number):Observable<ICategory> {
     return this.http.delete<any>(this.url+'delete/'+ id)
       .pipe( map((data) => {
-          let categories = data.categories.json();
+          let categories = data.categories;
           this.$Categories.next(categories);
         return categories;
       }));

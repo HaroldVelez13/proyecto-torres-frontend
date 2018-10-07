@@ -1,3 +1,41 @@
-<p>
-  category-list works!
-</p>
+<article class="row">
+	<section class="col-2 offset-10 col-sm-1 offset-sm-11 align-self-start">
+		<a mat-fab color="primary" (click)="openFormCategory()">
+				<mat-icon>library_add</mat-icon>
+			</a>
+	</section> 
+</article>
+<article>
+  <ngx-slick class="carousel" #slickModal="slick-modal" [config]="slideConfig" >
+      <div ngxSlickItem *ngFor="let category of Categories" class="slide">
+        <mat-card  class="mat-elevation-z8 list-card ">
+          <mat-card-header class="row">
+            <mat-list>
+              <mat-list-item>					    	
+                  <h6 mat-line>{{category.name| titlecase}}</h6>
+                  <small mat-line> Categoria</small>
+                  <h6 mat-line>{{category.material| titlecase}}</h6>
+                  <small mat-line> Material</small>							    	
+              </mat-list-item>				 	
+            </mat-list> 
+          </mat-card-header>
+          <mat-card-content>
+            <div class="row justify-content-center">
+              <div class="col-3 align-self-center">
+                <button mat-icon-button class="color-warning little-space" 
+                  (click)="openFormCategory(category)">
+                  <mat-icon>edit</mat-icon>
+                </button>
+              </div>				
+              <div class="col-3 align-self-center">
+                <button mat-icon-button class="color-danger little-space" 
+                          (click)="deleteCategory(cartegpry)">
+                  <mat-icon>delete_forever</mat-icon>
+                </button>
+              </div>				
+            </div>	              
+          </mat-card-content>
+        </mat-card>
+      </div>
+  </ngx-slick>
+</article>

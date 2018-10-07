@@ -11,7 +11,7 @@
 
 .slideshow{
 
-      position: absolute !important;
+    position: absolute !important;
     display: block;
     margin-top: -3em;
     margin-left: -3em;
@@ -21,6 +21,10 @@
     overflow: hidden;
 
 }
+.slick-slide img {
+    display: block;
+    height: 20rem;
+} 
 
 
 

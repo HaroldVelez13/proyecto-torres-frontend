@@ -10,8 +10,12 @@ import {
   MatDialogModule,
   MatSnackBarModule,
   MatTooltipModule,
+  MatSelectModule,
+  MatListModule,
+  MatCardModule,
   MatTableModule,  
 } from '@angular/material';
+import { SlickModule } from 'ngx-slick';
 import { ToolsLandingComponent } from './tools-landing/tools-landing.component';
 import { ToolsListComponent } from './tools/tools-list/tools-list.component';
 import { ToolsFormComponent } from './tools/tools-form/tools-form.component';
@@ -26,14 +30,18 @@ const toolsRoute: Routes = [
     CommonModule,
     RouterModule.forChild(toolsRoute),
     FormsModule,
-    ReactiveFormsModule,    
+    ReactiveFormsModule,
+    SlickModule.forRoot(),    
   	MatButtonModule, 
   	MatIconModule,  
   	MatFormFieldModule,
   	MatInputModule,
   	MatDialogModule,
   	MatSnackBarModule,
-  	MatTooltipModule,
+    MatTooltipModule,
+    MatSelectModule,
+    MatListModule,
+    MatCardModule,
     MatTableModule
   ],
   declarations: [ ToolsLandingComponent, 

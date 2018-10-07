@@ -18,6 +18,7 @@ import { CarouselHomeComponent } from './carousel-home/carousel-home.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { AlertComponent } from './alert/alert.component';
 import { DialogDeleteComponent } from './_helpers-components/dialog-delete/dialog-delete.component';
+import { SlickModule } from 'ngx-slick';
 
 //styles
 import { 
@@ -67,7 +68,7 @@ registerLocaleData(localeEsCo, 'es-CO');
     FormsModule,
     ReactiveFormsModule,
     Routing,
-    
+    SlickModule.forRoot(),    
     
     MatButtonModule, 
     MatIconModule, 

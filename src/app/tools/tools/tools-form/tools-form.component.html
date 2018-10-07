@@ -32,11 +32,11 @@
                 </mat-option>
 			</mat-select>
 			<mat-select placeholder=" Tipo" formControlName="type">
-                <mat-option *ngFor="let type of Types" [value]="estate.value">
+                <mat-option *ngFor="let type of Types" [value]="type.value">
                   {{estate.viewValue}}
                 </mat-option>
 			</mat-select>
-			<mat-select placeholder=" Categoria" formControlName="type">
+			<mat-select placeholder=" Categoria" formControlName="category">
                 <mat-option *ngFor="let category of Categories" [value]="category.id">
                   {{category.name}}
                 </mat-option>
