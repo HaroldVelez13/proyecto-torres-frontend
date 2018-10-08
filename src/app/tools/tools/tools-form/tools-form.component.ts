@@ -10,6 +10,7 @@ import { ICategory } from '../../category/icategory';
   styleUrls: ['./tools-form.component.css']
 })
 export class ToolsFormComponent implements OnInit {
+  
 
   toolForm:FormGroup;
   Tool:ITool;
@@ -29,7 +30,7 @@ export class ToolsFormComponent implements OnInit {
               @Inject(MAT_DIALOG_DATA) public data:any,
               private fb: FormBuilder) 
   { 
-    this.Tool       = data.tools;
+    this.Tool       = data.tool;
     this.Categories = data.categories;
   }
 
@@ -60,20 +61,31 @@ export class ToolsFormComponent implements OnInit {
     });
   
     if (this.Tool) { 
-      this._setForm(); 
+      var category_id:number;
+      Object.keys(this.Categories).forEach(index => {
+        let categoryName:string = JSON.stringify(this.Tool.category.name).toLowerCase();
+        let category:string     = JSON.stringify(this.Categories[index].name).toLowerCase();
+        if(category===categoryName){
+          return category_id=this.Categories[index].id ;
+        } 
+       
+      });
+      
+      this._setForm(category_id);
     }	   	
   
   
   }
   
-  private _setForm():void{
+  private _setForm(category_id:number):void{
+    
     this.toolForm.setValue({
       id:       this.Tool.id,
       barcode:  this.Tool.barcode,
-      name:     this.Tool.barcode,
+      name:     this.Tool.name,
       state:    this.Tool.state,
       type:     this.Tool.type,
-      category: this.Tool.category,
+      category: category_id
     });
   }
 }

@@ -4,5 +4,6 @@ export interface ICategory {
     material?:string;
     description?:string;
     min_stock?:number;
+    tools_coutn?:number;
 
 }

@@ -17,7 +17,7 @@ data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAUElEQVQoU2
  }
 mat-sidenav {
     position: fixed;
-    width: 10rem;
+    width: 11rem;
 }
 .example-container {
   display: flex;
@@ -51,6 +51,10 @@ mat-sidenav {
 .color-accent{
   font-size: 2em;
   color: #00695C;
+}
+.color-disable{
+  font-size: 2em;
+  color: gray;
 }
 .color-warning{
   font-size: 2em;

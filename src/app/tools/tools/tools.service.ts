@@ -29,18 +29,29 @@ export class ToolsService {
     }));   
   }
 
-  public create(category: ITool):Observable<ITool> {
+  public getToolsForCategory(id:number){
+    let url =this.url+'getForCategory/'+id;
+    return this.http.get<any>(url)
+    .pipe(map((data) => {
+        let tools = data.tools;
+        this.$Tools.next(tools);
+        return  tools;
+    }));
 
-    return this.http.post<any>(this.url+'create', category)
+  }
+
+  public create(tool: ITool):Observable<ITool> {
+
+    return this.http.post<any>(this.url+'create', tool)
       .pipe(map((data) => {
           let tools = data.tools;
           this.$Tools.next(tools);
           return  tools;
       }));
   }
-	public update(category: ITool):Observable<ITool> {
+	public update(tool: ITool):Observable<ITool> {
 	    
-    return this.http.put<any>(this.url+'update/' + category.id, category)
+    return this.http.put<any>(this.url+ tool.id+'/update' , tool)
       .pipe(map((data) => {
         let tools = data.tools;
         this.$Tools.next(tools);
@@ -49,7 +60,7 @@ export class ToolsService {
   }
 
   public delete(id: number):Observable<ITool> {
-    return this.http.delete<any>(this.url+'delete/'+ id)
+    return this.http.delete<any>(this.url+ id+'/delete')
       .pipe( map((data) => {
           let tools = data.tools;
           this.$Tools.next(tools);

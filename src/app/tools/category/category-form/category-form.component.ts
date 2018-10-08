@@ -26,7 +26,7 @@ export class CategoryFormComponent implements OnInit {
               @Inject(MAT_DIALOG_DATA) public data:any,
               private fb: FormBuilder)
   { 
-    this.Category = data;
+    this.Category = data.category;
   
   }
 

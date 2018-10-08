@@ -11,6 +11,7 @@ import { API_URL } from '../../_config/constants';
 export class CategoryService {
   private url:string;
   public $Categories = new Subject<any>();
+  public $Category = new Subject<any>();
   
 
   constructor(private http: HttpClient) {
@@ -21,6 +22,10 @@ export class CategoryService {
     return this.$Categories.asObservable();
   }
 
+  public getCategory():Observable<ICategory>{
+    return this.$Category.asObservable();
+  }
+  
   public getAll():Observable<[ICategory]> {
     return this.http.get<any>(this.url)
       .pipe( map((data) => {
@@ -28,6 +33,16 @@ export class CategoryService {
           this.$Categories.next(categories);
           return categories;
     }));   
+  }
+
+  public show(id:number):Observable<ICategory>{
+    let url = this.url+id;
+    return this.http.get<any>(url)
+    .pipe(map((data) => {   
+        let category = data.category;
+        this.$Category.next(category);
+        return  category;
+    }));
   }
 
   public create(category: ICategory):Observable<ICategory> {
@@ -41,7 +56,7 @@ export class CategoryService {
   }
 	public update(category: ICategory):Observable<ICategory> {
 	    
-    return this.http.put<any>(this.url+'update/' + category.id, category)
+    return this.http.put<any>(this.url+category.id+'/update', category)
       .pipe(map((data) => {
         let categories = data.categories;
         this.$Categories.next(categories);
@@ -50,7 +65,7 @@ export class CategoryService {
   }
 
   public delete(id: number):Observable<ICategory> {
-    return this.http.delete<any>(this.url+'delete/'+ id)
+    return this.http.delete<any>(this.url+id+'/delete')
       .pipe( map((data) => {
           let categories = data.categories;
           this.$Categories.next(categories);

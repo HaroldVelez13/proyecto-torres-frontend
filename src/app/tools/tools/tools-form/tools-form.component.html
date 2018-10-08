@@ -5,8 +5,8 @@
 	<section class="dialog-content center-text col-10">
 		<form [formGroup]="toolForm" novalidate>
 			<h3 class="center-text">
-				<span *ngIf="Category">Editar Herramienta</span>
-				<span *ngIf="!Category">Crear Herramienta</span>
+				<span *ngIf="Tool">Editar Herramienta</span>
+				<span *ngIf="!Tool">Crear Herramienta</span>
 			</h3>
 			<mat-form-field  class="simple-container">
 				<mat-label>Nombre de la Herramienta</mat-label>          
@@ -26,21 +26,27 @@
 					</mat-error>
 				</mat-error>
 			</mat-form-field>
-			<mat-select placeholder=" Estado" formControlName="state">
-                <mat-option *ngFor="let estate of Estates" [value]="estate.value">
-                  {{estate.viewValue}}
-                </mat-option>
-			</mat-select>
+			<mat-form-field class="simple-container">
+				<mat-select placeholder=" Estado" formControlName="state">
+									<mat-option *ngFor="let estate of States" [value]="estate.value">
+										{{estate.viewValue}}
+									</mat-option>
+				</mat-select>
+		</mat-form-field>
+		<mat-form-field class="simple-container">
 			<mat-select placeholder=" Tipo" formControlName="type">
                 <mat-option *ngFor="let type of Types" [value]="type.value">
-                  {{estate.viewValue}}
+                  {{type.viewValue}}
                 </mat-option>
 			</mat-select>
+		</mat-form-field>
+		<mat-form-field class="simple-container">
 			<mat-select placeholder=" Categoria" formControlName="category">
                 <mat-option *ngFor="let category of Categories" [value]="category.id">
                   {{category.name}}
                 </mat-option>
-            </mat-select>			
+						</mat-select>	
+		</mat-form-field>		
 		</form>
 	</section>
 	<section class="col-10 offset-1 center-text">
@@ -48,8 +54,8 @@
     		color="primary" 
     		[disabled]="!toolForm.valid"
     		(click)="accept()">
-    		<span *ngIf="Eps">Editar</span>
-    		<span *ngIf="!Eps">Crear </span>
+    		<span *ngIf="Tool">Editar</span>
+    		<span *ngIf="!Tool">Crear </span>
     	</button>
 	</section> 
 </article>

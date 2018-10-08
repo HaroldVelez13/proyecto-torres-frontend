@@ -1,7 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {first} from 'rxjs/operators';
-import { Observable} from 'rxjs';
-import { DataSource } from '@angular/cdk/collections';
 import  { MatSnackBar,
 			    MatDialog, 
 			    MatDialogConfig
@@ -9,6 +7,7 @@ import  { MatSnackBar,
 
 import {ICategory} from '../icategory';
 import {CategoryService} from '../category.service';
+import {ToolsService} from '../../tools/tools.service';
 import { DialogDeleteComponent } from '../../../_helpers-components/dialog-delete/dialog-delete.component';
 
 import { CategoryFormComponent} from '../category-form/category-form.component';
@@ -19,28 +18,30 @@ import { CategoryFormComponent} from '../category-form/category-form.component';
   styleUrls: ['./category-list.component.css']
 })
 export class CategoryListComponent implements OnInit {
-  isHovering = null;
+  isHovering:number=null;
+  isSelected:number;
   Categories:any;
-  public slideConfig = {  slidesToShow: 5,
-                          dots: true,
-                          infinite:false ,
-                          slidesPerRow:3
+  Category:any;
+  public slideConfig = {  'slidesToShow': 5,
+                          'dots': true,
+                          'infinite':false ,
+                          'slidesPerRow':3
 
                         };
 
   constructor(private categoryService: CategoryService,
+              private toolsServices:ToolsService,
               private dialog: MatDialog,
               public snackBar: MatSnackBar) { }
 
-  ngOnInit() {    
+  ngOnInit() {  
+    this.Categories=this.categoryService.getCategories();
+    this.Category=this.categoryService.getCategory(); 
     this.getAllCategories();
   }
 
   public getAllCategories(){
-		this.categoryService.getAll().subscribe((categories)=>{
-      this.Categories = categories;
-      console.log(categories);
-    });
+		this.categoryService.getAll().subscribe();
   }
   
   public deleteCategory(category:ICategory):void{
@@ -64,7 +65,7 @@ export class CategoryListComponent implements OnInit {
 
 		dialogConfig.disableClose = false;    
 		if (category) {
-			dialogConfig.data = category;
+			dialogConfig.data = {category:category};
 		}else{
 			dialogConfig.data = false;
 		}
@@ -97,10 +98,22 @@ export class CategoryListComponent implements OnInit {
   }
 
   public open(index:number) {
+    if(this.isHovering == index){
+      this.isHovering = null;
+    }else{
       this.isHovering = index;
+    }      
   }
   public mouseLeaving() {
       this.isHovering = null;
+  }
+
+  public selectCategory(index:number, category:ICategory) {
+    this.categoryService.show(category.id).subscribe(
+      ()=> this.toolsServices.getToolsForCategory(category.id).subscribe()
+    );
+    
+    this.isSelected = index;
   }
 
 }

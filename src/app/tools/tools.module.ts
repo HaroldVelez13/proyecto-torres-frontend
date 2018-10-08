@@ -13,6 +13,7 @@ import {
   MatSelectModule,
   MatListModule,
   MatCardModule,
+  MatBadgeModule,
   MatExpansionModule,
   MatTableModule,  
 } from '@angular/material';
@@ -43,6 +44,7 @@ const toolsRoute: Routes = [
     MatSelectModule,
     MatListModule,
     MatCardModule,
+    MatBadgeModule,
     MatExpansionModule,
     MatTableModule
   ],
