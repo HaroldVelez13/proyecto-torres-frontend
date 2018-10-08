@@ -1,0 +1,13 @@
+small{
+    font-size: 0.9em !important;
+    color: #9e9e9e;
+    margin-bottom: -3px !important;
+}
+
+h6{
+    font-size: 1em;
+    color: grey;
+    margin-left: 0.1em !important;    
+    font-style: italic;
+}
+

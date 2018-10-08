@@ -1,41 +1,75 @@
-<article class="row">
+<!-- <article class="row">
 	<section class="col-2 offset-10 col-sm-1 offset-sm-11 align-self-start">
 		<a mat-fab color="primary" (click)="openFormCategory()">
 				<mat-icon>library_add</mat-icon>
 			</a>
 	</section> 
-</article>
-<article>
-  <ngx-slick class="carousel" #slickModal="slick-modal" [config]="slideConfig" >
-      <div ngxSlickItem *ngFor="let category of Categories" class="slide">
-        <mat-card  class="mat-elevation-z8 list-card ">
-          <mat-card-header class="row">
-            <mat-list>
-              <mat-list-item>					    	
-                  <h6 mat-line>{{category.name| titlecase}}</h6>
-                  <small mat-line> Categoria</small>
-                  <h6 mat-line>{{category.material| titlecase}}</h6>
-                  <small mat-line> Material</small>							    	
-              </mat-list-item>				 	
-            </mat-list> 
-          </mat-card-header>
-          <mat-card-content>
-            <div class="row justify-content-center">
-              <div class="col-3 align-self-center">
+</article>-->
+<article>   
+    <ngx-slick class="carousel " #slickModal="slick-modal" [config]="slideConfig">      
+      <mat-card ngxSlickItem 
+                *ngFor="let category of Categories; let i = index" 
+                class="mat-elevation-z8 list-card slide"               
+                (mouseleave)="mouseLeaving(i)"
+                (click)="open(i)"
+                >
+        <mat-card-header class="row justify-content-start"> 
+            <mat-card-title >              
+                {{category.name| titlecase}}              
+            </mat-card-title>
+            <mat-card-subtitle> 
+              <button mat-icon-button (mouseenter)="open(i)">
+                <mat-icon *ngIf="isHovering===i; else more">expand_less</mat-icon>
+                <ng-template #more>
+                    <mat-icon>expand_more</mat-icon>
+                </ng-template> 
+              </button>                               
+            </mat-card-subtitle>         
+        </mat-card-header>
+        <mat-card-content *ngIf="isHovering===i">        
+                         
+          <small > Material:</small>	
+          <h6  *ngIf="category.material, else material">{{category.material| titlecase}}</h6>
+          <ng-template #material>
+              <h6 >---</h6>
+          </ng-template>
+
+          <small > Descripcion:</small>
+          <h6  *ngIf="category.description, else description">{{category.description| titlecase}}</h6>
+          <ng-template #description>
+              <h6 >---</h6>
+          </ng-template>
+
+          <small > Minimo stock:</small>	
+          <h6  *ngIf="category.min_stock, else minstock">{{category.min_stock}}</h6>
+          <ng-template #minstock>
+              <h6 >Cero (0)</h6>
+          </ng-template> 	
+            				 	
+                     	              
+        </mat-card-content>
+      <mat-card-actions *ngIf="isHovering===i">
+          <div class="row justify-content-center">
+              <div>
                 <button mat-icon-button class="color-warning little-space" 
                   (click)="openFormCategory(category)">
                   <mat-icon>edit</mat-icon>
                 </button>
+              </div>
+              <div>
+                <button mat-icon-button class="little-space" >
+                  <mat-icon color="primary">check_circle_outline</mat-icon>
+                </button>
               </div>				
-              <div class="col-3 align-self-center">
+              <div>
                 <button mat-icon-button class="color-danger little-space" 
-                          (click)="deleteCategory(cartegpry)">
+                          (click)="deleteCategory(category)">
                   <mat-icon>delete_forever</mat-icon>
                 </button>
               </div>				
-            </div>	              
-          </mat-card-content>
-        </mat-card>
-      </div>
-  </ngx-slick>
+            </div>
+        </mat-card-actions>
+    </mat-card> 
+</ngx-slick>
+ 
 </article>

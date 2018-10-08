@@ -13,6 +13,7 @@ import {
   MatSelectModule,
   MatListModule,
   MatCardModule,
+  MatExpansionModule,
   MatTableModule,  
 } from '@angular/material';
 import { SlickModule } from 'ngx-slick';
@@ -42,6 +43,7 @@ const toolsRoute: Routes = [
     MatSelectModule,
     MatListModule,
     MatCardModule,
+    MatExpansionModule,
     MatTableModule
   ],
   declarations: [ ToolsLandingComponent, 

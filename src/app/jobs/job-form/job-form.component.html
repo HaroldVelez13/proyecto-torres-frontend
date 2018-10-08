@@ -86,8 +86,11 @@
 			              </mat-error>
 			            </mat-form-field>
 
-			            <mat-form-field class="simple-container">
-			              <input matInput [matDatepicker]="init_date" placeholder=" Fecha de Inicio del Contrato " formControlName="init_date">
+			            <mat-form-field class="simple-container">											 
+										<input matInput [matDatepicker]="init_date" 
+																		placeholder=" Fecha de Inicio del Contrato " 
+																		formControlName="init_date"
+																		(focus)="init_date.open()" readonly>
 			              <mat-datepicker-toggle matSuffix [for]="init_date"></mat-datepicker-toggle>
 			              <mat-datepicker #init_date></mat-datepicker>
 			              <mat-icon matSuffix

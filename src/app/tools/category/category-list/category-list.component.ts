@@ -19,32 +19,13 @@ import { CategoryFormComponent} from '../category-form/category-form.component';
   styleUrls: ['./category-list.component.css']
 })
 export class CategoryListComponent implements OnInit {
-
+  isHovering = null;
   Categories:any;
-  public slideConfig = {    'centerMode': true,
-                            'slidesToShow': 3,
-                            'dots': true,
-                            responsive: [
-                              {
-                                'breakpoint': 768,
-                                'settings': {
-                                  'arrows': false,
-                                  'centerMode': true,
-                                  'centerPadding': '40px',
-                                  'slidesToShow': 2
-                                }
-                              },
-                              {
-                                'breakpoint': 480,
-                                'settings': {
-                                  'arrows': false,
-                                  'centerMode': true,
-                                  'centerPadding': '40px',
-                                  'slidesToShow': 1
-                                }
-                              }
-                            ]
-                                                
+  public slideConfig = {  slidesToShow: 5,
+                          dots: true,
+                          infinite:false ,
+                          slidesPerRow:3
+
                         };
 
   constructor(private categoryService: CategoryService,
@@ -113,6 +94,13 @@ export class CategoryListComponent implements OnInit {
     this.snackBar.open('La Herramienta '+name+' Fue Eliminada con exito', null,{
       duration: 1200,
     });
+  }
+
+  public open(index:number) {
+      this.isHovering = index;
+  }
+  public mouseLeaving() {
+      this.isHovering = null;
   }
 
 }

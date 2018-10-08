@@ -35,7 +35,6 @@ import {
   MatListModule
 } from '@angular/material';
 
-import {SlideshowModule} from 'ng-simple-slideshow';
 
 //Services
 import { AuthGuard } from './_config/auth/auth.guard';
@@ -79,8 +78,7 @@ registerLocaleData(localeEsCo, 'es-CO');
     MatCardModule,
     MatProgressBarModule,
     MatProgressSpinnerModule,
-    MatListModule,
-    SlideshowModule
+    MatListModule
 
   ],
   providers: [

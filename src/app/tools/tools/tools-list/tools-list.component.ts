@@ -22,7 +22,7 @@ export class ToolsListComponent implements OnInit {
 
   displayedColumns: string[] = ['index','name', 'barcode', 'state', 'type'];	
   Tools = new ToolDataSource(this.toolService); 
-  
+    
   constructor(  private toolService: ToolsService,
                 private dialog: MatDialog,
                 public snackBar: MatSnackBar) { }
@@ -87,6 +87,7 @@ export class ToolsListComponent implements OnInit {
       duration: 1200,
     });
   }
+
 
 
 }
