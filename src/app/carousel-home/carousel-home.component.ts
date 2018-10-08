@@ -16,6 +16,12 @@ export class CarouselHomeComponent implements OnInit {
   public instances:any;
   public Carousels:[ICarousel];
   public imageSources: Array<string>;
+  public slideConfig = {  'dots': true,
+                          'infinite': true,
+                          'speed': 300,
+                          'slidesToShow': 1,
+                          'cssEase': 'linear'
+                        };
 
   constructor(private carouselService:CarouselService) { 
 
@@ -24,6 +30,7 @@ export class CarouselHomeComponent implements OnInit {
   }
 
   ngOnInit() { 
+    $('.your-slider').slick('unslick');
     this.getCarousels();
 
   }
@@ -43,10 +50,10 @@ export class CarouselHomeComponent implements OnInit {
 
   getImages(carousels:ICarousel[]):void{
     
-    var images: Array<string> = [ ]; 
+    var images: Array<any> = [ ]; 
     Object.keys(carousels).forEach(key => {
       let image = carousels[key].url_slide;
-      images.push(this.url_image+image);
+      images.push({img:this.url_image+image});
     });
     
     this.imageSources = images;

@@ -39,65 +39,60 @@ export class EpsListComponent implements OnInit {
 	public getAllEps(){
 		this.epsService.getAll().subscribe();
 	}
+
+
+	public deleteEps(eps:IEps):void{
+			const dialogConfig = new MatDialogConfig();
+
+			dialogConfig.disableClose = false;        
+			dialogConfig.data = { type: 'La Eps', name: eps.name };
+			this.dialog.open(DialogDeleteComponent, dialogConfig)
+						.afterClosed().subscribe(
+							data => { if (data) {
+											this.epsService.delete(eps.id).pipe(first()).subscribe(() => { 
+											this.openSnackBar(eps.name);
+											});
+										}
+									});  		
+	}
+
+	public openFormEps(eps?:IEps){
+
+	const dialogConfig = new MatDialogConfig();
+
+	dialogConfig.disableClose = false;    
+	if (eps) {
+		dialogConfig.data = eps;
+	}else{
+		dialogConfig.data = false;
+	}
 	
-/*    public applyFilter(filterValue: string) {
-    	filterValue = filterValue.trim();
-    	filterValue = filterValue.toLowerCase();   		
-    	this.Epses.filter = filterValue;
-  	}*/
+	this.dialog.open(EpsFormComponent, dialogConfig)
+		.afterClosed().subscribe(
+			formValue => { 
+				if (formValue && eps) {
+					this.updateEps(formValue);
+				}
+				if (formValue && !eps) {
+					this.createEps(formValue);
+				}
+		});
+	}
 
-  	public deleteEps(eps:IEps):void{
-        const dialogConfig = new MatDialogConfig();
+	private updateEps(eps:IEps){
+	this.epsService.update(eps).subscribe();
 
-        dialogConfig.disableClose = false;        
-        dialogConfig.data = { type: 'La Eps', name: eps.name };
-        this.dialog.open(DialogDeleteComponent, dialogConfig)
-              .afterClosed().subscribe(
-                data => { if (data) {
-                        this.epsService.delete(eps.id).pipe(first()).subscribe(() => { 
-                        this.openSnackBar(eps.name);
-	                     });
-	                    }
-	                  });  		
-  	}
+	}
 
-  	public openFormEps(eps?:IEps){
+	private createEps(eps:IEps){
+		this.epsService.create(eps).subscribe();
+	}
 
-		const dialogConfig = new MatDialogConfig();
-
-		dialogConfig.disableClose = false;    
-		if (eps) {
-			dialogConfig.data = eps;
-		}else{
-			dialogConfig.data = false;
-		}
-		
-		this.dialog.open(EpsFormComponent, dialogConfig)
-			.afterClosed().subscribe(
-				formValue => { 
-					if (formValue && eps) {
-						this.updateEps(formValue);
-					}
-					if (formValue && !eps) {
-						this.createEps(formValue);
-					}
-			});
-  	}
-
-  	private updateEps(eps:IEps){
-		this.epsService.update(eps).subscribe();
-
-  	}
-
-  	private createEps(eps:IEps){
-  		this.epsService.create(eps).subscribe();
-  	}
-
-  	private openSnackBar(name) {
-      this.snackBar.open('La Eps '+name+' Fue Eliminada con exito', null,{
-        duration: 1200,
-      });
-    }
+	private openSnackBar(name) {
+		this.snackBar.open('La Eps '+name+' Fue Eliminada con exito', null,{
+			duration: 1200,
+		});
+	}
 
 }
 

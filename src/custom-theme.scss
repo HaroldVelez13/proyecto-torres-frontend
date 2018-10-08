@@ -15,13 +15,12 @@ $custom-theme: mat-light-theme($custom-theme-primary, $custom-theme-accent, $cus
 
 @mixin custom-elevation-button {	
   @include mat-elevation-transition;
-  @include mat-elevation(1);
 
   &:active {
-    @include mat-elevation(3);
+    @include mat-elevation(2);
   }
   &:hover{
-  	@include mat-elevation(3);
+  	@include mat-elevation(2);
   }
 }
 

@@ -1,5 +1,5 @@
 
-<slideshow [lazyLoad]="imageSources"
+<!-- <slideshow [lazyLoad]="imageSources"
 		   [height]="'50%'"
            [autoPlay]="true"
            [showDots]="true"
@@ -7,7 +7,13 @@
            [autoPlayWaitForLazyLoad]="true" 
            fxFlex="100"
            class="slideshow">           	
-</slideshow>
+</slideshow> -->
+
+<ngx-slick class="carousel" #slickModal="slick-modal" [config]="slideConfig" >
+    <div ngxSlickItem *ngFor="let slide of imageSources" class="slide">
+          <img src="{{ slide.img }}" alt="" width="100%">
+    </div>
+</ngx-slick>
 
 
 	

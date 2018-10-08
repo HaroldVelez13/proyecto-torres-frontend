@@ -1,0 +1,61 @@
+<article class="row justify-content-center">
+	<section class="col-1 align-self-start">
+		<button mat-icon-button (click)="cancel()"><mat-icon>clear</mat-icon></button>
+	</section>
+	<section class="dialog-content center-text col-10">
+		<form [formGroup]="toolForm" novalidate>
+			<h3 class="center-text">
+				<span *ngIf="Tool">Editar Herramienta</span>
+				<span *ngIf="!Tool">Crear Herramienta</span>
+			</h3>
+			<mat-form-field  class="simple-container">
+				<mat-label>Nombre de la Herramienta</mat-label>          
+				<input matInput type="text"  formControlName="name" autofocus>
+				<mat-error *ngFor="let validation of validation_messages.name">
+					<mat-error *ngIf="toolForm.get('name').hasError(validation.type) && (toolForm.get('name').dirty || toolForm.get('name').touched)">
+					{{validation.message}} 
+					</mat-error>
+				</mat-error>
+      		</mat-form-field>
+			<mat-form-field  class="simple-container">
+				<mat-label>Codigo De Barras</mat-label>          
+				<input matInput type="number"  formControlName="barcode">
+				<mat-error *ngFor="let validation of validation_messages.barcode">
+					<mat-error *ngIf="toolForm.get('barcode').hasError(validation.type) && (toolForm.get('barcode').dirty || toolForm.get('barcode').touched)">
+					{{validation.message}} 
+					</mat-error>
+				</mat-error>
+			</mat-form-field>
+			<mat-form-field class="simple-container">
+				<mat-select placeholder=" Estado" formControlName="state">
+									<mat-option *ngFor="let estate of States" [value]="estate.value">
+										{{estate.viewValue}}
+									</mat-option>
+				</mat-select>
+		</mat-form-field>
+		<mat-form-field class="simple-container">
+			<mat-select placeholder=" Tipo" formControlName="type">
+                <mat-option *ngFor="let type of Types" [value]="type.value">
+                  {{type.viewValue}}
+                </mat-option>
+			</mat-select>
+		</mat-form-field>
+		<mat-form-field class="simple-container">
+			<mat-select placeholder=" Categoria" formControlName="category">
+                <mat-option *ngFor="let category of Categories" [value]="category.id">
+                  {{category.name}}
+                </mat-option>
+						</mat-select>	
+		</mat-form-field>		
+		</form>
+	</section>
+	<section class="col-10 offset-1 center-text">
+		<button mat-stroked-button 
+    		color="primary" 
+    		[disabled]="!toolForm.valid"
+    		(click)="accept()">
+    		<span *ngIf="Tool">Editar</span>
+    		<span *ngIf="!Tool">Crear </span>
+    	</button>
+	</section> 
+</article>

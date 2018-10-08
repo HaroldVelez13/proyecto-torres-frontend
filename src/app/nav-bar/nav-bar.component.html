@@ -14,23 +14,27 @@
 
 	<mat-sidenav-container class="example-sidenav-container">
 	    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'">
-	      <mat-nav-list>
-	      	<a mat-list-item routerLink="/empleados">
-                 Empleados	        	
+	      <mat-nav-list class="row aling-item-start">
+	      	<a mat-list-item  routerLink="/empleados">
+                <span class="little-space">Empleados</span>   	
 	        	<mat-icon mat-list-icon>group</mat-icon>
 	      	</a>
-	      	<a mat-list-item routerLink="/seguridad-social">
-                 Seguridad Social	        	
+	      	<a mat-list-item  routerLink="/seguridad-social">
+                <span class="little-space">Seguridad Social</span>	        	
 	        	<mat-icon mat-list-icon>library_books</mat-icon>
 	      	</a>
-	      	<a mat-list-item routerLink="/evidencias">
-                 Evidencias	        	
+	      	<a mat-list-item  routerLink="/evidencias">
+                <span class="little-space">Evidencias</span>   	
 	        	<mat-icon mat-list-icon>image</mat-icon>
 	      	</a>
-	      	<a mat-list-item routerLink="/trabajos">
-                 Trabajos	        	
+	      	<a mat-list-item  routerLink="/trabajos">
+                <span class="little-space">Trabajos</span>   	
 	        	<mat-icon mat-list-icon>work</mat-icon>
-	      	</a>
+			</a>
+			<a mat-list-item  routerLink="/herramientas">
+				<span class="little-space">Herramientas</span>     	
+			   <mat-icon mat-list-icon>build</mat-icon>
+			</a>
 
 	      </mat-nav-list>
 	    </mat-sidenav>

@@ -26,39 +26,34 @@ export class EpsFormComponent implements OnInit {
   	this._createForms();
   }
 
-     public accept():void{
+public accept():void{    	
+  if (this.epsForm.invalid) {
+      return;
+  }
+  this.dialogRef.close(this.epsForm.value);   	
+}
 
-    	
-    	if (this.epsForm.invalid) {
-	        return;
-	    }
-
-    	this.dialogRef.close(this.epsForm.value);
-    	
-                
-    }
-
-    public cancel():void{
-        this.dialogRef.close(false);        
-    } 
+public cancel():void{
+    this.dialogRef.close(false);        
+} 
     
-    private _createForms():void{
+private _createForms():void{
 
-    	this.epsForm = this.fb.group({	 
-	    	id: new FormControl(null, []),   	
-		   	name: new FormControl(null,Validators.required)   
-	   	});
+  this.epsForm = this.fb.group({	 
+    id: new FormControl(null, []),   	
+    name: new FormControl(null,Validators.required)   
+  });
 
-	   	if (this.Eps) { this._setForm(); }	   	
+  if (this.Eps) { this._setForm(); }	   	
 
 	}
 
-  private _setForm():void{
-    this.epsForm.setValue({
-      id:this.Eps.id,
-      name:this.Eps.name
-    });
-  }
+private _setForm():void{
+  this.epsForm.setValue({
+    id:this.Eps.id,
+    name:this.Eps.name
+  });
+}
 
 
 }
