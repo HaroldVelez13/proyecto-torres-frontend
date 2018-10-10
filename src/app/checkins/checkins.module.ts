@@ -18,22 +18,21 @@ import {
   MatProgressBarModule
   
 } from '@angular/material';
+import { CheckinListComponent } from './checkin-list/checkin-list.component';
+import { CheckinFormComponent } from './checkin-form/checkin-form.component';
+import { CheckinDetailComponent } from './checkin-detail/checkin-detail.component';
 
-import { JobListComponent } from './job-list/job-list.component';
-import { JobDetailComponent } from './job-detail/job-detail.component';
-import { JobFormComponent } from './job-form/job-form.component';
-
-const jobsRoutes: Routes = [
-  {path: '', 			component: JobListComponent},
-  {path: 'crear', 		component: JobFormComponent},
-  {path: 'editar/:id', 	component: JobFormComponent},
-  {path: 'detalle/:id',	component: JobDetailComponent}
+const checkinRoutes: Routes = [
+  {path: '', 			component: CheckinListComponent},
+  {path: 'crear', 		component: CheckinFormComponent},
+  {path: 'editar/:id', 	component: CheckinFormComponent},
+  {path: 'detalle/:id',	component: CheckinDetailComponent}
 ];
 
 @NgModule({
   imports: [
     CommonModule,
-	  RouterModule.forChild(jobsRoutes),
+    RouterModule.forChild(checkinRoutes),
     FormsModule,
     ReactiveFormsModule,
     MatButtonModule, 
@@ -49,12 +48,11 @@ const jobsRoutes: Routes = [
     MatStepperModule,
     MatCardModule,
     MatProgressBarModule,
-
   ],
   declarations: [
-  	JobListComponent, 
-  	JobDetailComponent, 
-  	JobFormComponent
-  ]
+                  CheckinListComponent, 
+                  CheckinFormComponent, 
+                  CheckinDetailComponent
+                ]
 })
-export class JobsModule { }
+export class CheckinsModule { }

@@ -1,0 +1,42 @@
+<article class="row justify-content-start">
+  <section class="col-2 offset-10 col-sm-1 offset-sm-11">
+    <a mat-fab color="primary" routerLink="/facturas/crear">
+      <mat-icon>create_new_folder</mat-icon>
+    </a>
+  </section>
+</article>
+
+<article class="row justify-content-center justify-content-sm-start">
+  <mat-card class="mat-elevation-z8 list-card col-lg-3 col-sm-5 col-8" *ngFor="let checkin of Checkins">
+    <img mat-card-image [src]="api_img+checkin.url_image">   
+    <mat-card-header class="row">
+      <mat-list>
+        <mat-list-item>
+          <h6 mat-line>{{checkin.date}}</h6>
+          <small mat-line> Fecha de Ingreso</small>
+          <h6 mat-line>{{checkin.total}}</h6>
+          <small mat-line> Valor total</small>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row justify-content-center">
+        <div class="col-3 align-self-center">
+          <button mat-icon-button class="color-warning little-space" routerLink="/facturas/editar/{{checkin.id}}">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </div>
+        <div class="col-3 align-self-center">
+          <button mat-icon-button class="color-accent little-space" routerLink="/facturas/detalle/{{checkin.id}}" title="Ver mas">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+        <div class="col-3 align-self-center">
+          <button mat-icon-button class="color-danger little-space" (click)="deleteCheckin(checkin, $index)">
+            <mat-icon>delete_forever</mat-icon>
+          </button>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</article>
