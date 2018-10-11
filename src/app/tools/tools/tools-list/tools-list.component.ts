@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {first} from 'rxjs/operators';
 import { Observable} from 'rxjs';
-import { filter,map } from 'rxjs/operators';
 import { DataSource } from '@angular/cdk/collections';
 import  { MatSnackBar,
 			    MatDialog, 
@@ -23,16 +22,21 @@ import {ICategory} from '../../category/icategory';
 export class ToolsListComponent implements OnInit {
  
   displayedColumns: string[] = ['index','name', 'total', 'barcode', 'state', 'type', 'actions'];	
+  
   Tools = new ToolDataSource(this.toolService);
+  
   Categories:any;
   Category:any; 
     
   constructor(  private categoryService: CategoryService,
                 private toolService: ToolsService,
                 private dialog: MatDialog,
-                public snackBar: MatSnackBar) { }
+                public snackBar: MatSnackBar) { 
+                
+                }
 
   ngOnInit() {
+   
     this.categoryService.getCategories().subscribe((categories)=>{
       this.Categories = categories;
     });

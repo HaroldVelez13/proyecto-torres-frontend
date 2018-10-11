@@ -25,7 +25,7 @@ export class CategoryListComponent implements OnInit {
   public slideConfig = {  'slidesToShow': 5,
                           'dots': true,
                           'infinite':false ,
-                          'slidesPerRow':3
+                          'slidesPerRow':4
 
                         };
 

@@ -21,6 +21,7 @@ import {
 import { CheckinListComponent } from './checkin-list/checkin-list.component';
 import { CheckinFormComponent } from './checkin-form/checkin-form.component';
 import { CheckinDetailComponent } from './checkin-detail/checkin-detail.component';
+import { PipesModule } from '../pipes/pipes.module';
 
 const checkinRoutes: Routes = [
   {path: '', 			component: CheckinListComponent},
@@ -48,6 +49,8 @@ const checkinRoutes: Routes = [
     MatStepperModule,
     MatCardModule,
     MatProgressBarModule,
+    PipesModule
+    
   ],
   declarations: [
                   CheckinListComponent, 

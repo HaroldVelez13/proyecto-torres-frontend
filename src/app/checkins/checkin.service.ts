@@ -15,7 +15,7 @@ export class CheckinService {
 
   constructor(private http: HttpClient) 
   { 
-    this.url = API_URL+'checkins';
+    this.url = API_URL+'checkins/';
   }
 
   public getCheckins(){
@@ -38,10 +38,10 @@ export class CheckinService {
   }
 
   public create(checkin: ICheckin):Observable<ICheckin> {
-    var datePipe = new DatePipe('es-CO');
-      checkin.date = datePipe.transform(checkin.date, 'yyyy-MM-dd');
+      var datePipe = new DatePipe('es-CO');
+      checkin.date = datePipe.transform(checkin.date||Date.now(), 'yyyy-MM-dd');
 
-      return this.http.post<any>(this.url+'create', checkin)
+      return this.http.post<any>(this.url+'create/', checkin)
         .pipe(map((data) => {
             this.Checkins$.next(data.checkins);
             return  data.checkins;

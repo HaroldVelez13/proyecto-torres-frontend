@@ -23,6 +23,9 @@ import { ToolsListComponent } from './tools/tools-list/tools-list.component';
 import { ToolsFormComponent } from './tools/tools-form/tools-form.component';
 import { CategoryListComponent } from './category/category-list/category-list.component';
 import { CategoryFormComponent } from './category/category-form/category-form.component';
+
+
+
 const toolsRoute: Routes = [
   {path: '', component: ToolsLandingComponent}
 ];
@@ -55,5 +58,6 @@ const toolsRoute: Routes = [
                   CategoryFormComponent
                 ],
   entryComponents: [ToolsFormComponent,CategoryFormComponent]
+  
 })
 export class ToolsModule { }
