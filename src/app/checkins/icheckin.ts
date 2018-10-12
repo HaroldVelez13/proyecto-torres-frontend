@@ -4,4 +4,5 @@ export interface ICheckin {
     url_image?:string;
     total?:number;
     tools:[{tool_id:number, tool_quantity:number}];
+    pivot?:[{tool_id:number, tool_quantity:number}];
 }

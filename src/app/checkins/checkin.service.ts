@@ -60,7 +60,7 @@ export class CheckinService {
     }
 
   public addTool(id:number,tool_id:number, tool_quantity:number ):Observable<ICheckin> {
-    let data; 
+    let data = {tool_id,tool_quantity }; 
     data.tool_id=tool_id;
     data.tool_quantity=tool_quantity; 
     return this.http.put<any>(this.url+id+'/addTool' , data)

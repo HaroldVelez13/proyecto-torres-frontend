@@ -4,12 +4,15 @@ import { first } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import * as Constants from '../../_config/constants';
 import { MatHorizontalStepper, MatStep } from '@angular/material';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar,
+					MatDialog, 
+					MatDialogConfig } from '@angular/material';
 import { ICheckin } from '../icheckin';
 import { CheckinService } from '../checkin.service';
 
 import {ToolsService} from '../../tools/tools/tools.service';
 import {ITool} from '../../tools/tools/itool';
+import { ToolTotalComponent } from '../tool-total/tool-total.component';	
 
 
 @Component({
@@ -38,7 +41,8 @@ export class CheckinFormComponent implements OnInit {
               private toolsService : ToolsService,
               private fb: FormBuilder,
               private activatedRoute: ActivatedRoute,
-              private snackBar: MatSnackBar) { }
+							private snackBar: MatSnackBar,
+							private dialog: MatDialog,) { }
 
   ngOnInit() {
     this.createForms();
@@ -64,7 +68,8 @@ export class CheckinFormComponent implements OnInit {
 
   private getCheckin(id:number){
 		this.checkinService.getById(id).subscribe((data)=>{
-      this.init_image = this.src_img+data.checkin.url_image;
+			this.init_image = this.src_img+data.checkin.url_image;
+			this.checkin = data.checkin;			
 			this.getTools(data.tools);
 			this.setForm(data.checkin);			
 			this.stepFormCompleted=true;			
@@ -155,10 +160,21 @@ export class CheckinFormComponent implements OnInit {
   private next(){
 		this.stepper.next();
 	}
-
-	public onSelection(event:any){		
+	public onSelection(event:any){
 		this.selectedOptions = event;
-  }
+	}
+
+	getValue(tool){
+		let index = tool.id;
+		if(this.selectedOptions[index]){
+			return this.openFormTool(tool);
+		}
+		else{
+			return alert('nothing');
+			//this.deleteTool(tool);
+		}	
+		
+	}
   
   	/**
 	* this is used to trigger the input
@@ -180,7 +196,58 @@ export class CheckinFormComponent implements OnInit {
         this.init_image = reader.result;	       
       }		  
       }
-  }
+	}
+	
+	public openFormTool(tool:any){
+		
+		const dialogConfig = new MatDialogConfig();
+
+		dialogConfig.disableClose = false; 
+		dialogConfig.data = {checkin:this.checkin, tool:tool};
+		dialogConfig.width= '30em',		
+		
+	
+		this.dialog.open(ToolTotalComponent, dialogConfig)
+			.afterClosed().subscribe(
+				formValue => { 
+					if (formValue ) {
+						var id, tool_id, tool_quantity;
+						id = this.checkin.id;
+						tool_id = formValue.tool_id;
+						tool_quantity = formValue.tool_quantity; 
+						this.checkinService.addTool(id, tool_id, tool_quantity).subscribe();						
+					}
+					else{
+						
+						var options=[];
+						this.selectedOptions.forEach((option)=>{
+							if(option !== tool.id){
+								options.push(option);
+							}
+						});
+						
+						this.selectedOptions = options;
+															
+					}
+				}
+			);
+	}
+
+	public deleteTool(tool:any){
+		var tool_actual, id, tool_id, tool_quantity;
+		this.checkin.pivot.forEach((t)=>{
+			if(tool.id === t.tool_id){
+				tool_actual = t;
+			}
+		});
+		id = this.checkin.id;
+		tool_id = tool_actual.tool_id;
+		tool_quantity = tool_actual.tool_quantity;
+		this.checkinService.leastTool(id, tool_id, tool_quantity).subscribe(
+			(data)=>console.log(data)
+		);
+
+	}
 
 
 }

@@ -22,6 +22,7 @@ import { CheckinListComponent } from './checkin-list/checkin-list.component';
 import { CheckinFormComponent } from './checkin-form/checkin-form.component';
 import { CheckinDetailComponent } from './checkin-detail/checkin-detail.component';
 import { PipesModule } from '../pipes/pipes.module';
+import { ToolTotalComponent } from './tool-total/tool-total.component';
 
 const checkinRoutes: Routes = [
   {path: '', 			component: CheckinListComponent},
@@ -55,7 +56,9 @@ const checkinRoutes: Routes = [
   declarations: [
                   CheckinListComponent, 
                   CheckinFormComponent, 
-                  CheckinDetailComponent
-                ]
+                  CheckinDetailComponent, 
+                  ToolTotalComponent
+                ],
+  entryComponents: [ToolTotalComponent]
 })
 export class CheckinsModule { }

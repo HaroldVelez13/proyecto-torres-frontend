@@ -102,7 +102,7 @@
 							</mat-form-field>	
 			        <mat-selection-list #toolsList [(ngModel)]="selectedOptions" (ngModelChange)="onSelection($event)" >
 								
-								<mat-list-option *ngFor="let tool of tools | toolsFilter : searchText" [value]="tool.id" >
+								<mat-list-option *ngFor="let tool of tools | toolsFilter : searchText" [value]="tool.id" (click)="getValue(tool)" >
 									<mat-icon mat-list-icon>perm_contact_calendar</mat-icon>
 										<h4 mat-line>{{tool.name | titlecase}}</h4>
 										<p mat-line> {{tool.barcode}}</p>						 
