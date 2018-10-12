@@ -1,0 +1,134 @@
+<article class="row align-items-start">
+  <section class="col-10 col-md-11 align-self-start">
+    <h3>Formulario de <span *ngIf="!checkinId">Registro</span>  <span *ngIf="checkinId">Edicion</span> de Facturas</h3>
+    <p>Los Campos con <mat-icon color="warn" class="tiny">help</mat-icon>Son requeridos</p>
+  </section>
+  <section class="col-2 col-md-1 align-self-start">
+    <a mat-fab color="primary" routerLink="/facturas" title="Ir a Lista de Facturas">
+      <mat-icon >folder</mat-icon>
+    </a>
+  </section>
+</article>
+
+<article class="row align-items-center">
+	<mat-horizontal-stepper linear  id="stepper" class="col-10 offset-1">
+		<mat-step  [completed]="stepFormCompleted" class="row align-items-center">			
+			<ng-template matStepLabel class="col-12">Datos Generales</ng-template>
+			<section class="mat-elevation-z8 col-8 offset-2 col-md-6 offset-md-3">   
+			    <mat-card class="row">    
+			      <mat-card-content >
+			        <form [formGroup]="checkinForm" novalidate >  
+
+                <div class="row justify-content-center"> 
+                  <div class="col-4">
+										<div>
+											<img mat-card-image  [src]="init_image" />
+										</div>                   
+                    <div class="row justify-content-center">                   
+											<button mat-raised-button (click)="openInput()" class="col-8 offset-2">
+												Factura
+												<mat-icon matSuffix
+																color="warn" 
+																matTooltip="La Imagen es requerida" 
+																matTooltipPosition="below"
+																class="tiny">help
+												</mat-icon>
+											</button>              
+											<input [hidden]="true" type="file" (change)="fileChange($event)" accept="image/*" multiple id="factura">
+										</div>
+										</div>
+										<div class="col-7 right-text">
+											<mat-form-field class="simple-container">											 
+												<input matInput [matDatepicker]="date" 
+																				placeholder=" Fecha de Inicio de la factura" 
+																				formControlName="date"
+																				(focus)="date.open()" readonly>
+												<mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
+												<mat-datepicker #date></mat-datepicker>
+												<mat-icon matSuffix
+																	color="primary" 
+																	matTooltip="Por defecto la fecha es la de Hoy" 
+																	matTooltipPosition="below"
+																	class="tiny">help
+												</mat-icon>
+											</mat-form-field>
+
+											<mat-form-field class="simple-container">
+													<mat-label> Total</mat-label>
+													<input matInput type="text" placeholder=" Total pagado" formControlName="total">
+													<mat-icon matPrefix class="prefix">location_city</mat-icon>
+													<mat-icon matSuffix
+																		color="primary" 
+																		matTooltip="La ciudad debe contar con al menos 5 Letras" 
+																		matTooltipPosition="below"
+																		class="tiny">help
+													</mat-icon>
+													<mat-error *ngFor="let validation of validation_messages.total">
+														<mat-error *ngIf="checkinForm.get('total').hasError(validation.type) && (checkinForm.get('total').dirty || checkinForm.get('total').touched)">
+															{{validation.message}}
+														</mat-error>
+													</mat-error>
+												</mat-form-field>
+										</div>
+									</div>                     
+							</form> 		
+			      			      
+							<div class="row align-items-center">
+								<div class="col-4 offset-4 center-text">
+									<button mat-stroked-button color="primary" 			        		
+													[disabled]="!checkinForm.valid || loading" 
+													(click)="formAction(checkinForm.value)">
+													<span *ngIf="!checkinId">Registro</span>  <span *ngIf="checkinId">Editar</span>              
+									</button>
+								</div>
+							</div>			         
+			       
+			       <p [hidden]="!loading">
+			          <mat-progress-bar mode="indeterminate"> </mat-progress-bar> 
+						</p> 
+					</mat-card-content>          
+			    </mat-card> 
+			</section>
+					
+		</mat-step>
+		<mat-step class="row align-items-center">
+			<ng-template matStepLabel class="col-12">Asignar Herramientas</ng-template>
+
+			<section class="mat-elevation-z8 col-10 offset-1 col-md-8 offset-md-2">   
+			    <mat-card  class="row">    
+			      <mat-card-content >
+							<mat-form-field class="simple-container">									 
+									<input matInput [(ngModel)]="searchText" placeholder="Buscar Herramienta">
+							</mat-form-field>	
+			        <mat-selection-list #toolsList [(ngModel)]="selectedOptions" (ngModelChange)="onSelection($event)" >
+								
+								<mat-list-option *ngFor="let tool of tools | toolsFilter : searchText" [value]="tool.id" (click)="getValue(tool)" >
+									<mat-icon mat-list-icon>perm_contact_calendar</mat-icon>
+										<h4 mat-line>{{tool.name | titlecase}}</h4>
+										<p mat-line> {{tool.barcode}}</p>						 
+								</mat-list-option>
+							</mat-selection-list>
+			      </mat-card-content>
+			      <mat-card-actions >
+							<div class="row align-items-center">
+								<div class="col-3 offset-2">
+									<button mat-stroked-button color="primary"  matStepperPrevious>
+										Volver
+									</button>
+								</div>
+								<div class="col-3 offset-2">
+									<button mat-stroked-button color="primary"  (click)="addTools()">
+										Asignar
+									</button>		
+								</div>
+							</div>
+						<p [hidden]="!loading" class="col-12">
+			          <mat-progress-bar mode="indeterminate"> </mat-progress-bar> 
+			      </p>
+					</mat-card-actions> 
+           
+			    </mat-card> 
+			</section>
+		</mat-step>
+	</mat-horizontal-stepper>
+</article>

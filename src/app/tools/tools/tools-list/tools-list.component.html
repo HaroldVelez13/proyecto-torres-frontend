@@ -1,6 +1,7 @@
 <article class="row">
 	<section class="col-10 col-sm-11 align-self-center">
-			<h4 >Herramientas por Categoria - {{nameCategory(Category|async)}}</h4>			
+			<h4 >Herramientas por Categoria - {{nameCategory(Category|async)}}</h4>	
+		
 	</section>
 	<section class="col-2 col-sm-1 align-self-start">
 
@@ -12,9 +13,14 @@
 	</section> 
 </article>
 
-<article class="row justify-content-center">		
-		  <table mat-table [dataSource]="Tools" class="mat-elevation-z8 col-12 col-md-10 " >
-
+<article class="row justify-content-center">
+			<div class="col-12 col-md-10">					
+				<mat-form-field class="simple-container">									 
+					<input matInput [(ngModel)]="searchText" placeholder="Buscar Herramienta">
+				</mat-form-field>
+			</div>
+		  <table mat-table [dataSource]="Tools " class="mat-elevation-z8 col-12 col-md-10 " >
+					
 		    <!-- Index Column -->
 		    <ng-container matColumnDef="index">
 		      <th  mat-header-cell *matHeaderCellDef> Nº </th>

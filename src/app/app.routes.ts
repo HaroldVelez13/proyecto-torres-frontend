@@ -12,11 +12,13 @@ const AppRoutes: Routes = [
     //Modules for entry
     { path: 'empleados', 	    loadChildren: './users/users.module#UsersModule' },
 	{ path: 'seguridad-social', loadChildren: './social-security/social-security.module#SocialSecurityModule' },
-	{ path: 'herramientas', 	loadChildren: './tools/tools.module#ToolsModule' },
     { path: 'evidencias',       loadChildren: './carousels/carousels.module#CarouselsModule' },
-	{ path: 'trabajos', 	    loadChildren: './jobs/jobs.module#JobsModule' },
+    { path: 'trabajos', 	    loadChildren: './jobs/jobs.module#JobsModule' },
+	{ path: 'herramientas', 	loadChildren: './tools/tools.module#ToolsModule' },
+	{ path: 'facturas', 	    loadChildren: './checkins/checkins.module#CheckinsModule' },
+    
     //Any other route (No autorizate) 
-    { path: '**',             redirectTo:'', pathMatch : 'full' },
+    { path: '**',               redirectTo:'', pathMatch : 'full' },
 
    ];
     

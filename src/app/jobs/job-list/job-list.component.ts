@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { first } from 'rxjs/operators';
 import { IJob } from '../ijob';
 import { JobService } from '../job.service';
-import * as Constants from '../../_config/constants';
 import {MatDialog, MatDialogConfig} from "@angular/material";
 import { DialogDeleteComponent } from '../../_helpers-components/dialog-delete/dialog-delete.component';
 import {MatSnackBar} from '@angular/material';
@@ -19,21 +18,21 @@ export class JobListComponent implements OnInit {
   				private dialog: MatDialog,
               	public snackBar: MatSnackBar) { }
 
-  ngOnInit() {
-  	this.loadAllJobs();
-  }
+	ngOnInit() {
+		this.loadAllJobs();
+	}
 
-  public loadAllJobs(){
-	this.jobService.getAll()
-		.pipe(first())
-		.subscribe(slides => { 
-	  		this.jobs = slides; 
-		},
-		error => {
-	 	// console.log(error);
-	});
+	public loadAllJobs(){
+		this.jobService.getAll()
+			.pipe(first())
+			.subscribe(slides => { 
+				this.jobs = slides; 
+			},
+			error => {
+			// console.log(error);
+		});
 
-  }
+	}
 
   	public openSnackBar(name) {
 		this.snackBar.open('El trabajo '+name+' fue Eliminada con exito', null,{
@@ -41,7 +40,7 @@ export class JobListComponent implements OnInit {
 		});
 	}
 	public deleteSlide(job, index) {
-		var name = job.business_person
+		var name = job.business_person;
 		const dialogConfig = new MatDialogConfig();
 
 		dialogConfig.disableClose = false;
@@ -55,6 +54,6 @@ export class JobListComponent implements OnInit {
 		                this.openSnackBar(name);
 		                });}
 		          });         
-}
+	}
 
 }

@@ -21,20 +21,20 @@
 		</mat-card-header>
 		<mat-card-content>
 			<div class="row justify-content-center">
-				<div class="col-3 align-self-center">
+				<div class="col-4">
 					<button mat-icon-button class="color-warning little-space" 
 						routerLink="/trabajos/editar/{{job.id}}">
 						<mat-icon>edit</mat-icon>
 					</button>
 				</div>
-				<div class="col-3 align-self-center">
+				<div class="col-4">
 					<button mat-icon-button class="color-accent little-space" 
 										routerLink="/trabajos/detalle/{{job.id}}"
 										title="Ver mas de {{job.business_person}}">
 						<mat-icon>add</mat-icon>
 					</button>	
 				</div>				
-				<div class="col-3 align-self-center">
+				<div class="col-4">
 					<button mat-icon-button class="color-danger little-space" 
 										(click)="deleteJob(job, $index)">
 						<mat-icon>delete_forever</mat-icon>

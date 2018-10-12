@@ -10,7 +10,7 @@
 	<section class="row justify-content-center">   
 	    <mat-card  class="mat-elevation-z8" class="col-12 col-sm-10 col-md-8 col-lg-6 ">
 	    	<mat-card-header class="row">									    	
-				<mat-list class="col">
+				<mat-list class="col-5">
 				  	<mat-list-item >					    	
 				    	<h4 mat-line>{{job.business_person| titlecase}}</h4>
 						<small mat-line> Persona/Empresa</small>
@@ -29,7 +29,7 @@
 				 	</mat-list-item>	 	
 				 	
 				</mat-list>
-				<mat-list class="col">	 	
+				<mat-list class="col-6">	 	
   					  <mat-list-item >					    	
 						  <h4 mat-line *ngIf="job.city; else city">{{job.city| titlecase }}</h4>
 						  <ng-template #city>
