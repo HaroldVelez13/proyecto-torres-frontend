@@ -23,6 +23,7 @@ import { SlickModule } from 'ngx-slick';
 //styles
 import { 
   MAT_DATE_LOCALE,
+  MatSnackBarModule,
   MatButtonModule, 
   MatIconModule, 
   MatToolbarModule,
@@ -69,6 +70,7 @@ registerLocaleData(localeEsCo, 'es-CO');
     Routing,
     SlickModule.forRoot(),    
     
+    MatSnackBarModule,
     MatButtonModule, 
     MatIconModule, 
     MatToolbarModule,
@@ -96,6 +98,6 @@ registerLocaleData(localeEsCo, 'es-CO');
     { provide: MAT_DATE_LOCALE, useValue: 'es-ES' }
   ],
   bootstrap: [AppComponent],
-  entryComponents: [DialogDeleteComponent]
+  entryComponents: [DialogDeleteComponent,AlertComponent]
 })
 export class AppModule { }

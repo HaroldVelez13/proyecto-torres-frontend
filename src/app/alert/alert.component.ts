@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import {AlertService} from './alert.service';
+import {MatSnackBar} from '@angular/material';
+
 
 
 @Component({
@@ -8,29 +10,48 @@ import {AlertService} from './alert.service';
   templateUrl: './alert.component.html',
   styleUrls: ['./alert.component.css']
 })
-export class AlertComponent implements OnInit, OnDestroy {
+export class AlertComponent implements OnInit, OnDestroy  {
 	
-	private subscription: Subscription;
   public message: any;
+  private subscription: Subscription;
     
-  constructor(private alertService: AlertService) { }
-
+  constructor(public snackBar: MatSnackBar, private alertService: AlertService) { }
   ngOnInit() {
-	this.subscription = this.alertService.getMessage().subscribe(message => { 
-        this.message = message; 
+    this.subscription = this.alertService.getMessage().subscribe(message => {  
+        this.setError(message);     
+ 
     });
-
-    setTimeout(() => {
-      this.close();
-    }, 3300);
   }
-  close():void{
-    this.message = null;
-    this.subscription.unsubscribe();
 
+  close():void{
+      this.message = null;
+      this.subscription.unsubscribe();
+  
   }
   ngOnDestroy(){
-  	this.subscription.unsubscribe();
+      this.subscription.unsubscribe();
+    }
+  private setError(message:string){
+    if(message=="Unknown Error" )
+    {
+      this.message="Ocurrio un Error, intentalo mas tarde";
+      this.openSnackBar();
+    }else if( message=="" || message== null){
+      return
+    }
+    else{
+      this.message = message;
+      this.openSnackBar();
+    }    
+    
   }
+  private openSnackBar() {
+    this.snackBar.open(this.message, 'Cerrar', {
+      duration: 2000,
+      verticalPosition:'top',
+      panelClass: ['alert-service']
+  }).afterDismissed().subscribe(()=>this.close());
+}
+  
 
 }
