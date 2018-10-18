@@ -109,4 +109,12 @@ mat-sidenav {
   color:#3f51b5 !important;
 }
 
+.alert-service{
+	background-color: #FAFAFA;
+  color: black;
+  width:100%;
+}
 
+.mat-simple-snackbar-action {
+  color: #3f51b5 !important;
+}
