@@ -23,7 +23,7 @@ export class PensionListComponent implements OnInit {
 	displayedColumns: string[] = ['index','name', 'users_count', 'actions'];	
 	Pensions = new PensionDataSource(this.pensionService);	
   constructor(	private pensionService: PensionService,
-  				private dialog: MatDialog,
+  							private dialog: MatDialog,
               	public snackBar: MatSnackBar) { }
 
   ngOnInit() {
@@ -48,7 +48,7 @@ export class PensionListComponent implements OnInit {
 	                }
 	        });  		
 	}
-  	public openFormPension(pension?:IPension){
+  public openFormPension(pension?:IPension){
 
 		const dialogConfig = new MatDialogConfig();
 

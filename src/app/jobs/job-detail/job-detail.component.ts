@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { first } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
-import * as Constants from '../../_config/constants';
 import { IJob } from '../ijob';
 import { JobService } from '../job.service';
 import {IUser} from '../../users/iuser';

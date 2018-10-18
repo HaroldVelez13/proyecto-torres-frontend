@@ -8,8 +8,8 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
 })
 export class DialogDeleteComponent {
 
-	type:string;
-	name:string;
+ type:string;
+  name:string;
   constructor(private dialogRef: MatDialogRef<DialogDeleteComponent>,
         		@Inject(MAT_DIALOG_DATA) public data:any) { 
   	this.type = data.type;

@@ -10,7 +10,7 @@
                 (mouseleave)="mouseLeaving(i)">
         <mat-card-header class="row justify-content-center"> 
           <mat-card-title *ngIf="isSelected===i; else other">              
-              <h4>{{c.name| titlecase}}</h4>              
+              <h4>{{c.name}}</h4>              
           </mat-card-title>
           <ng-template #other>
               <mat-card-subtitle>

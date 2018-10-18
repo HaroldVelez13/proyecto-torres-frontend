@@ -46,9 +46,8 @@ import { UserService } from './users/user.service';
 import {EpsService} from './social-security/eps/eps.service';
 import { PensionService } from './social-security/pensions/pension.service';
 import { JobService } from './jobs/job.service';
-
-
-
+//pipes
+import { PipesModule } from './pipes/pipes.module'; 
 
 registerLocaleData(localeEsCo, 'es-CO');
 
@@ -80,7 +79,8 @@ registerLocaleData(localeEsCo, 'es-CO');
     MatCardModule,
     MatProgressBarModule,
     MatProgressSpinnerModule,
-    MatListModule
+    MatListModule,
+    PipesModule
 
   ],
   providers: [
@@ -91,7 +91,7 @@ registerLocaleData(localeEsCo, 'es-CO');
     UserService,
     EpsService,
     PensionService,
-    JobService,
+    JobService,   
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: LOCALE_ID, useValue: 'es-CO' },
@@ -99,5 +99,10 @@ registerLocaleData(localeEsCo, 'es-CO');
   ],
   bootstrap: [AppComponent],
   entryComponents: [DialogDeleteComponent,AlertComponent]
+ 
+
 })
-export class AppModule { }
+export class AppModule {
+  constructor(){      
+  } 
+ }

@@ -33,7 +33,7 @@ const jobsRoutes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
-	RouterModule.forChild(jobsRoutes),
+	  RouterModule.forChild(jobsRoutes),
     FormsModule,
     ReactiveFormsModule,
     MatButtonModule, 
